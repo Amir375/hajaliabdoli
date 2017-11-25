@@ -10,7 +10,11 @@ namespace Hotels.Model
             : base("HotelDb")
         {
         }
-
+        public DbSet<Person> People { get; set; }
+        public DbSet<Passenger> Passengers { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Phone> Phones { get; set; }
+        public DbSet<Guest> Guests { get; set; }
     }
 
 }
