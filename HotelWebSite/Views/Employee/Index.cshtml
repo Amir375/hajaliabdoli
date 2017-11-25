@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Hotels.Model.Employee>
+@{
+    ViewBag.Title = "Index";
+}
+
+<table class="table table-bordered table-striped table-hover">
+    <thead>
+        <tr>
+            <th class="text-center">نام</th>
+            <th class="text-center">نام خانوادکی</th>
+            <th class="text-center">سن</th>
+            <th class="text-center">جنسیت</th>
+            <th class="text-center">نام کاربری</th>
+            <th class="text-center">آدرس</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="text-center">
+                <td>@item.Name</td>
+                <td>@item.Family</td>
+                <td>@item.Age</td>
+                <td>@item.Sex</td>
+                <td>@item.Username</td>
+                <td>@item.Location</td>
+            </tr>
+        }
+    </tbody>
+</table>

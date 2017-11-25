@@ -1,0 +1,18 @@
+﻿@import url('../fonts/IranSans.css');
+
+body {
+    direction: rtl;
+    font-family: "Iran Sans Web";
+}
+
+@media (min-width: 768px) {
+    .navbar > .container .navbar-brand,
+    .navbar > .container-fluid .navbar-brand {
+        margin-right: -15px;
+        margin-left: 0;
+    }
+}
+
+#main-container {
+    margin-top: 70px;
+}
