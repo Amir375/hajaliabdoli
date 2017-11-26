@@ -27,6 +27,12 @@
     </nav> 
     <div class="container">
         <div class="row">
+            @if (TempData["Message"] != null)
+            {
+                <div class="alert alert-info">
+                    <strong>Info!</strong> @TempData["Message"]
+                </div>
+            }
             @RenderBody()
         </div>
     </div>

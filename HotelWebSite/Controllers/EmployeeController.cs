@@ -24,9 +24,19 @@ namespace HotelWebSite.Controllers
         [HttpPost]
         public ActionResult Create(Employee employee)
         {
+            var j = "def";
             HotelDb ctx = new HotelDb();
-            ctx.Employees.Add(employee);
-            ctx.SaveChanges();
+            if (employee != null)
+            {
+                ctx.Employees.Add(employee);
+                ctx.SaveChanges();
+            }
+            if (employee.Sex == "Female")
+                j = "خانم ";
+            else
+                j = "آقای ";
+
+            TempData["Message"] = $"{j}{employee.Name} {employee.Family}  با موفقیت ثبت شد";
             return RedirectToAction("Index");
         }
 
