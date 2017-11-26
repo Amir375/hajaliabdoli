@@ -1,0 +1,67 @@
+﻿@model Hotels.Model.Employee
+@{
+    ViewBag.Title = "Delete";
+}
+
+<div class="col-md-12 jumbotron">
+    <table class="table table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <th class="text-center">نام</th>
+                <th class="text-center">نام خانوادکی</th>
+                <th class="text-center">سن</th>
+                <th class="text-center">جنسیت</th>
+                <th class="text-center">نام کاربری</th>
+                <th class="text-center">آدرس</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="text-center">
+                <td>@Model.Name</td>
+                <td>@Model.Family</td>
+                <td>@Model.Age</td>
+                <td>@Model.Sex</td>
+                <td>@Model.Username</td>
+                <td>@Model.Location</td>
+            </tr>
+        </tbody>
+    </table>
+    <h3>
+        آیا میخواهید این اطلاعات را حذف کنید ؟
+    </h3>
+    <form method="post" class="form-inline">
+        <input value="@Model.Id" type="hidden" />
+        @*<button type="submit" class="btn btn-success">
+            بله
+        </button>*@
+        <a href="@Url.Action("Index","Employee")" class="btn btn-default">
+            خیر
+        </a>
+
+        <button  type="button" class="btn btn-info " data-toggle="modal" data-target="#myModal">بله</button>
+
+        <!-- Modal -->
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        @*<h4 class="modal-title">Modal Header</h4>*@
+                    </div>
+                    <div class="modal-body">
+                        <p>واقعا ؟؟</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-success">بله واقعا:|</button>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+
+</div>

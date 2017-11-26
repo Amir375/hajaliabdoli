@@ -12,6 +12,7 @@
             <th class="text-center">جنسیت</th>
             <th class="text-center">نام کاربری</th>
             <th class="text-center">آدرس</th>
+            <th class="text-center">عملیات</th>
         </tr>
     </thead>
     <tbody>
@@ -24,6 +25,16 @@
                 <td>@item.Sex</td>
                 <td>@item.Username</td>
                 <td>@item.Location</td>
+                <td>
+                    <a href="@Url.Action("Delete","Employee",new { id = item.Id })" class="btn btn-danger btn-sm">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </a>
+                    |
+                    <a href="@Url.Action("Edit","Employee",new { id = item.Id })" class="btn btn-success btn-sm">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </a>
+
+                </td>
             </tr>
         }
     </tbody>

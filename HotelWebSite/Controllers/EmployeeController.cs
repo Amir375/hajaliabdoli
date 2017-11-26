@@ -9,6 +9,7 @@ namespace HotelWebSite.Controllers
 {
     public class EmployeeController : Controller
     {
+        private HotelDb ctx { get; set; } = new HotelDb();
         // GET: Employee
         public ActionResult Index()
         {
@@ -39,6 +40,45 @@ namespace HotelWebSite.Controllers
             TempData["Message"] = $"{j}{employee.Name} {employee.Family}  با موفقیت ثبت شد";
             return RedirectToAction("Index");
         }
+        public ActionResult Delete (int id)
+        {
+            var Empo = ctx.Employees.Find(id);
 
+            return View(Empo);
+        }
+        [HttpPost]
+        [ActionName("Delete")]
+        public ActionResult DeleteEmployee(int id)
+        {
+            ctx.Employees.Remove(ctx.Employees.Find(id));
+            ctx.SaveChanges();
+            TempData["Message"] = "رکورد مورد نظر با موفقیت حذف شد";
+            return RedirectToAction("Index");
+
+        }
+        public ActionResult Edit (int id)
+        {
+            var Empo = ctx.Employees.Find(id);
+            return View(Empo);
+        }
+        [HttpPost]
+        [ActionName("Edit")]
+        public ActionResult EditEmployee (Employee Empo)
+        {
+            var j = "def";
+            ctx.Entry<Employee>(Empo).State = System.Data.Entity.EntityState.Modified;
+            if (string.IsNullOrEmpty(Empo.PasswordHash))
+                //ctx.Entry<Employee>(employee).Property("PasswordHash").IsModified = false;
+                ctx.Entry<Employee>(Empo).Property(nameof(Empo.PasswordHash)).IsModified = false;
+            ctx.Entry<Employee>(Empo).Property(nameof(Empo.Sex)).IsModified = false;
+            ctx.SaveChanges();
+            if (Empo.Sex == "Female")
+                j = "خانم ";
+            else
+                j = "آقای ";
+            TempData["Message"] = $"اطلاعات {j} \" {Empo.Name} {Empo.Family} \"  با موفقیت ثبت شد";
+            return RedirectToAction("Index");
+
+        }
     }
 }
