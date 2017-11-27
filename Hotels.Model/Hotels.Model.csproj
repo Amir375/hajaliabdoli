@@ -49,27 +49,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Booking.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="Guest.cs" />
     <Compile Include="HotelDb.cs" />
-    <Compile Include="Migrations\201711251859133_first.cs" />
-    <Compile Include="Migrations\201711251859133_first.Designer.cs">
-      <DependentUpon>201711251859133_first.cs</DependentUpon>
+    <Compile Include="Migrations\201711270822350_First.cs" />
+    <Compile Include="Migrations\201711270822350_First.Designer.cs">
+      <DependentUpon>201711270822350_First.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Option.cs" />
     <Compile Include="Passenger.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="Phone.cs" />
     <Compile Include="PhoneType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Room.cs" />
+    <Compile Include="Suit.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201711251859133_first.resx">
-      <DependentUpon>201711251859133_first.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201711270822350_First.resx">
+      <DependentUpon>201711270822350_First.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
