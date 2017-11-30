@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Hotels.Model.Guest>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h3>لیست همراهان :</h3>
+<br/>
+
+<table class="table table-bordered">
+    <tr >
+        @*<th>
+            @Html.DisplayNameFor(model => model.Passenger.Name)
+        </th>*@
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.Family)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.Age)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.NationalCode)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.Sex)
+        </th>
+        <th>عملیات</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr class="text-center">
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Passenger.Name)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Family)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Age)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NationalCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sex)
+        </td>
+        <td>
+            <a href="@Url.Action("Delete","Guest",new { id = item.Id })" class="btn btn-danger btn-sm">
+                <span class="glyphicon glyphicon-remove"></span>
+            </a>
+            |
+            <a href="@Url.Action("Edit","Guest",new { id = item.Id })" class="btn btn-success btn-sm">
+                <span class="glyphicon glyphicon-pencil"></span>
+            </a>
+        </td>
+    </tr>
+}
+
+</table>

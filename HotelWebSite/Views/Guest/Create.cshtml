@@ -1,0 +1,75 @@
+﻿@model Hotels.Model.Passenger
+@{
+    ViewBag.Title = "Create";
+}
+
+<div class="col-sm-12 jumbotron">
+     اطلاعات مسافر اصلی :
+    <br />
+    <br />
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>نام</th>
+                <th>نام خانوادگی</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Model.Name</td>
+                <td>@Model.Family</td>
+            </tr>
+        </tbody>
+
+    </table>
+</div>
+
+<form method="post" class="form-horizontal">
+    <input type="hidden" name="PassengerId" value="@Model.Id" />
+    <div class="form-group">
+        <label class="control-label col-md-2" for="Name">نام</label>
+        <div class="col-md-10">
+            <input type="text" name="Name" id="Name" placeholder="نام" class="form-control" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2" for="Family">نام خانوادگی</label>
+        <div class="col-md-10">
+            <input type="text" name="Family" id="Family" placeholder="نام خانوادگی" class="form-control" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="Age">سن</label>
+        <div class="col-md-10">
+            <input type="number" name="Age" id="Age" placeholder="سن" class="form-control" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="NationalCode">شماره شناسنامه</label>
+        <div class="col-md-10">
+            <input type="text" name="NationalCode" id="NationalCode" placeholder="شماره شناسنامه" class="form-control" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">جنسیت</label>
+        <div class="col-md-5">
+            <label for="Sex-man">مرد</label>
+            <input type="radio" name="Sex" id="Sex-man" value="Man" />
+        </div>
+        <div class="col-md-5">
+            <label for="Sex-female">زن</label>
+            <input type="radio" name="Sex" id="Sex-female" value="Female" />
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        <button class="btn btn-success btn-sm pull-left" type="submit" name="bt">
+            <span class="glyphicon glyphicon-save"></span>
+            ذخیره
+        </button>
+    </div>
+</form>

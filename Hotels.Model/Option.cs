@@ -11,9 +11,8 @@ namespace Hotels.Model
         public int Id { get; set; }
         public bool Estakhr { get; set; }
         public bool Internet { get; set; }
-        public string Price { get; set; }
+        public long Price { get; set; }
         public bool Masaj { get; set; }
-        public bool MyProperty { get; set; }
         public bool Parking { get; set; }
     }
 }

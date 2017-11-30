@@ -11,6 +11,12 @@ namespace HotelWebSite.Controllers
     {
         private HotelDb ctx { get; set; } = new HotelDb();
         // GET: Employee
+        public ActionResult Menu()
+        {
+
+            return View();
+        }
+
         public ActionResult Index()
         {
             HotelDb ctx = new HotelDb();
@@ -27,11 +33,8 @@ namespace HotelWebSite.Controllers
         {
             var j = "def";
             HotelDb ctx = new HotelDb();
-            if (employee != null)
-            {
-                ctx.Employees.Add(employee);
-                ctx.SaveChanges();
-            }
+            ctx.Employees.Add(employee);
+            ctx.SaveChanges();
             if (employee.Sex == "Female")
                 j = "خانم ";
             else
@@ -70,7 +73,7 @@ namespace HotelWebSite.Controllers
             if (string.IsNullOrEmpty(Empo.PasswordHash))
                 //ctx.Entry<Employee>(employee).Property("PasswordHash").IsModified = false;
                 ctx.Entry<Employee>(Empo).Property(nameof(Empo.PasswordHash)).IsModified = false;
-            ctx.Entry<Employee>(Empo).Property(nameof(Empo.Sex)).IsModified = false;
+            ctx.Entry<Employee>(Empo).Property(nameof(Empo.Sex)).CurrentValue = "Big";
             ctx.SaveChanges();
             if (Empo.Sex == "Female")
                 j = "خانم ";

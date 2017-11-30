@@ -1,0 +1,98 @@
+﻿@model IEnumerable<Hotels.Model.Passenger>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h3>لیست مسافر ها : </h3>
+<br />
+<table class="table table-bordered">
+    <tr>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.Family)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.Age)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.NationalCode)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.Sex)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.Location)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.DaysStays)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.PassportNumber)
+        </th>
+        <th class="text-center">اضافه کردن همراه</th>
+        <th class="text-center">مشاهده اطلاعات همراه</th>
+        <th class="text-center">عملیات</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr class="text-center">
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Family)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Age)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NationalCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sex)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Location)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DaysStays)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PassportNumber)
+        </td>
+        <td>
+            <a href="@Url.Action("Create","Guest",new { id = item.Id })" class="btn btn-primary btn-sm">
+                اضافه کردن
+                <span class="glyphicon glyphicon-plus"></span>
+            </a>
+        </td>
+
+        <td>
+            <a href="@Url.Action("List","Guest",new { id = item.Id })" class="btn btn-success btn-sm">
+                مشاهده کردن
+                <span class="glyphicon glyphicon-eye-open"></span>
+            </a>
+        </td>
+
+        <td>
+            <a href="@Url.Action("Delete","Guest",new { id = item.Id })" class="btn btn-danger btn-sm">
+                <span class="glyphicon glyphicon-remove"></span>
+            </a>
+            |
+            <a href="@Url.Action("Edit","Guest",new { id = item.Id })" class="btn btn-success btn-sm">
+                <span class="glyphicon glyphicon-pencil"></span>
+            </a>
+        </td>
+    </tr>
+}
+
+</table>
+<div class="row text-center">
+    <a href="@Url.Action("Create","Passenger")" class="btn btn-primary btn-sm">
+        ADD
+        <span class="glyphicon glyphicon-plus"></span>
+    </a>
+</div>

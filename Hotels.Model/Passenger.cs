@@ -10,10 +10,11 @@ namespace Hotels.Model
 {
     public class Passenger:Person
     {
-
+        [Display(Name = "تعداد روزهای اقامت")]
         public string DaysStays { get; set; }
 
-        [MaxLength(20) , Required , Index(IsUnique =true)]
+        //[MaxLength(20) , Required , Index(IsUnique =true)]
+        [Display(Name = "شماره پاسپورت")]
         public string PassportNumber { get; set; }
 
         public virtual List<Guest> Guests { get; set; }

@@ -15,12 +15,12 @@
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">WebSiteName</a>
+                <a class="navbar-brand" href="#">هتل سرخوشان</a>
             </div>
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#">Page 1</a></li>
-                <li><a href="#">Page 2</a></li>
+                <li><a href="@Url.Action("Index","Home")">خانه</a></li>
+                <li><a href="@Url.Action("Menu","Employee")">مدیریت کارمند ها</a></li>
+                <li><a href="@Url.Action("Index","Passenger")">مدیریت مسافرها</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right pull-left">
                 <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
@@ -30,13 +30,15 @@
     </nav> 
     <div class="container">
         <div class="row">
-            @if (TempData["Message"] != null)
+            <div class="col-xs-12">
+                @if (TempData["Message"] != null)
             {
-                <div class="alert alert-info">
-                    <strong>@TempData["Message"]</strong>
-                </div>
-            }
-            @RenderBody()
+                    <div class="alert alert-info">
+                        <strong>@TempData["Message"]</strong>
+                    </div>
+                }
+                @RenderBody()
+            </div>
         </div>
     </div>
 </body>

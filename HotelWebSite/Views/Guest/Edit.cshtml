@@ -1,0 +1,46 @@
+﻿@model Hotels.Model.Guest
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+<form method="post" class="form-horizontal">
+    <div class="form-group">
+        <label class="control-label col-md-2" for="Name">نام</label>
+        <div class="col-md-10">
+            <input type="text" name="Name" id="Name" placeholder="نام" class="form-control" value="@Model.Name" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2" for="Family">نام خانوادگی</label>
+        <div class="col-md-10">
+            <input type="text" name="Family" id="Family" placeholder="نام خانوادگی" class="form-control" value="@Model.Family" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="Age">سن</label>
+        <div class="col-md-10">
+            <input type="number" name="Age" id="Age" placeholder="سن" class="form-control" value="@Model.Age" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="NationalCode">شماره شناسنامه</label>
+        <div class="col-md-10">
+            <input type="text" name="NationalCode" id="NationalCode" placeholder="شماره شناسنامه" class="form-control" value="@Model.NationalCode" />
+        </div>
+    </div>
+
+
+    <input type="hidden" value="@Model.PassengerId" />
+    <div class="form-group">
+        @*<input type="hidden" value="@Model.Id" />*@
+        <button class="btn btn-success btn-sm pull-left" type="submit" name="bt">
+            <span class="glyphicon glyphicon-save"></span>
+            ذخیره
+        </button>
+    </div>
+</form>

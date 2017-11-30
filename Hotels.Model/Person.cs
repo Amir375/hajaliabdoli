@@ -12,21 +12,27 @@ namespace Hotels.Model
     {
         public int Id { get; set; }
 
-        [MaxLength(50) , Required]
+        //[MaxLength(50) , Required]
+        [Display(Name = "نام")]
         public string Name { get; set; }
 
-        [MaxLength(50), Required]
+        //[MaxLength(50), Required]
+        [Display(Name = "نام خانوادگی")]
         public string Family { get; set; }
 
-        [MaxLength(3)]
+        //[MaxLength(3)]
+        [Display(Name = "سن")]
         public string Age { get; set; }
 
-        [MaxLength(10) , Required , Index(IsUnique =true)]
+        //[MaxLength(10) , Required , Index(IsUnique =true)]
+        [Display(Name = "شماره شناسنامه")]
         public string NationalCode { get; set; }
 
+        [Display(Name = "جنسیت")]
         public string Sex { get; set; }
 
-        [MaxLength(100)]
+        //[MaxLength(100)]
+        [Display(Name = "آدرس")]
         public string Location { get; set; }
 
         public virtual List<Phone> Phones { get; set; }
