@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Hotels.Model
 {
+    [Table("Passenger", Schema = "People")]
     public class Passenger : Person
     {
         [Display(Name = "تعداد روزهای اقامت")]

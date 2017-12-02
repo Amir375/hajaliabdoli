@@ -73,9 +73,9 @@ namespace <#= Namespace #>
 #>
     public class <#= ControllerName #> : Controller
     {
-        private <#= ContextTypeName #> db = new <#= ContextTypeName #>();
+        private <#= ContextTypeName #> ctx = new <#= ContextTypeName #>();
 
-        // GET: <#= routePrefix #>
+        // GET: <#= routePrefix
 <# if (UseAsync) { #>
         public async Task<ActionResult> Index()
 <# } else { #>
@@ -86,7 +86,7 @@ namespace <#= Namespace #>
         includeExpressions = String.Join("", relatedProperties.Values.Select(property => String.Format(".Include({0} => {0}.{1})", lambdaVar, property.AssociationPropertyName)));
 #>
 <# if(!String.IsNullOrEmpty(includeExpressions)) { #>
-            var <#= entitySetVar #> = db.<#= entitySetName #><#= includeExpressions #>;
+            var <#= entitySetVar #> = ctx.<#= entitySetName #><#= includeExpressions #>;
 <#		if (UseAsync) { #>
             return View(await <#= entitySetVar #>.ToListAsync());
 <#		} else { #>
@@ -94,9 +94,9 @@ namespace <#= Namespace #>
 <#		} #>
 <# } else { #>
 <#		if (UseAsync) { #>
-            return View(await db.<#= entitySetName #><#= includeExpressions #>.ToListAsync());
+            return View(await ctx.<#= entitySetName #><#= includeExpressions #>.ToListAsync());
 <#		} else { #>
-            return View(db.<#= entitySetName #><#= includeExpressions #>.ToList());
+            return View(ctx.<#= entitySetName #><#= includeExpressions #>.ToList());
 <#		} #>
 <# } #>
         }
@@ -113,9 +113,9 @@ namespace <#= Namespace #>
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 <# if (UseAsync) { #>
-            <#= ModelTypeName #> <#= ModelVariable #> = await db.<#= entitySetName #>.FindAsync(id);
+            <#= ModelTypeName #> <#= ModelVariable #> = await ctx.<#= entitySetName #>.FindAsync(id);
 <# } else { #>
-            <#= ModelTypeName #> <#= ModelVariable #> = db.<#= entitySetName #>.Find(id);
+            <#= ModelTypeName #> <#= ModelVariable #> = ctx.<#= entitySetName #>.Find(id);
 <# } #>
             if (<#= ModelVariable #> == null)
             {
@@ -128,7 +128,7 @@ namespace <#= Namespace #>
         public ActionResult Create()
         {
 <# foreach (var property in relatedProperties.Values) { #>
-            ViewBag.<#= property.ForeignKeyPropertyNames[0] #> = new SelectList(db.<#= property.EntitySetName #>, "<#= property.PrimaryKeyNames[0] #>", "<#= property.DisplayPropertyName #>");
+            ViewBag.<#= property.ForeignKeyPropertyNames[0] #> = new SelectList(ctx.<#= property.EntitySetName #>, "<#= property.PrimaryKeyNames[0] #>", "<#= property.DisplayPropertyName #>");
 <# } #>
             return View();
         }
@@ -152,17 +152,17 @@ namespace <#= Namespace #>
 <# if(!String.IsNullOrEmpty(primaryKeyType) && String.Equals("System.Guid", primaryKeyType, StringComparison.OrdinalIgnoreCase)) { #>
                 <#= ModelVariable #>.<#= primaryKeyName #> = Guid.NewGuid();
 <# } #>
-                db.<#= entitySetName #>.Add(<#= ModelVariable #>);
+                ctx.<#= entitySetName #>.Add(<#= ModelVariable #>);
 <# if (UseAsync) {#>
-                await db.SaveChangesAsync();
+                await ctx.SaveChangesAsync();
 <# } else { #>
-                db.SaveChanges();
+                ctx.SaveChanges();
 <# } #>
                 return RedirectToAction("Index");
             }
 
 <# foreach (var property in relatedProperties.Values) { #>
-            ViewBag.<#= property.ForeignKeyPropertyNames[0] #> = new SelectList(db.<#= property.EntitySetName #>, "<#= property.PrimaryKeyNames[0] #>", "<#= property.DisplayPropertyName #>", <#= ModelVariable #>.<#= property.ForeignKeyPropertyNames[0] #>);
+            ViewBag.<#= property.ForeignKeyPropertyNames[0] #> = new SelectList(ctx.<#= property.EntitySetName #>, "<#= property.PrimaryKeyNames[0] #>", "<#= property.DisplayPropertyName #>", <#= ModelVariable #>.<#= property.ForeignKeyPropertyNames[0] #>);
 <# } #>
             return View(<#= ModelVariable #>);
         }
@@ -179,16 +179,16 @@ namespace <#= Namespace #>
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 <# if (UseAsync) { #>
-            <#= ModelTypeName #> <#= ModelVariable #> = await db.<#= entitySetName #>.FindAsync(id);
+            <#= ModelTypeName #> <#= ModelVariable #> = await ctx.<#= entitySetName #>.FindAsync(id);
 <# } else { #>
-            <#= ModelTypeName #> <#= ModelVariable #> = db.<#= entitySetName #>.Find(id);
+            <#= ModelTypeName #> <#= ModelVariable #> = ctx.<#= entitySetName #>.Find(id);
 <# } #>
             if (<#= ModelVariable #> == null)
             {
                 return HttpNotFound();
             }
 <# foreach (var property in relatedProperties.Values) { #>
-            ViewBag.<#= property.ForeignKeyPropertyNames[0] #> = new SelectList(db.<#= property.EntitySetName #>, "<#= property.PrimaryKeyNames[0] #>", "<#= property.DisplayPropertyName #>", <#= ModelVariable #>.<#= property.ForeignKeyPropertyNames[0] #>);
+            ViewBag.<#= property.ForeignKeyPropertyNames[0] #> = new SelectList(ctx.<#= property.EntitySetName #>, "<#= property.PrimaryKeyNames[0] #>", "<#= property.DisplayPropertyName #>", <#= ModelVariable #>.<#= property.ForeignKeyPropertyNames[0] #>);
 <# } #>
             return View(<#= ModelVariable #>);
         }
@@ -209,16 +209,16 @@ namespace <#= Namespace #>
         {
             if (ModelState.IsValid)
             {
-                db.Entry(<#= ModelVariable #>).State = EntityState.Modified;
+                ctx.Entry(<#= ModelVariable #>).State = EntityState.Modified;
 <# if (UseAsync) { #>
-                await db.SaveChangesAsync();
+                await ctx.SaveChangesAsync();
 <# } else { #>
-                db.SaveChanges();
+                ctx.SaveChanges();
 <# } #>
                 return RedirectToAction("Index");
             }
 <# foreach (var property in relatedProperties.Values) { #>
-            ViewBag.<#= property.ForeignKeyPropertyNames[0] #> = new SelectList(db.<#= property.EntitySetName #>, "<#= property.PrimaryKeyNames[0] #>", "<#= property.DisplayPropertyName #>", <#= ModelVariable #>.<#= property.ForeignKeyPropertyNames[0] #>);
+            ViewBag.<#= property.ForeignKeyPropertyNames[0] #> = new SelectList(ctx.<#= property.EntitySetName #>, "<#= property.PrimaryKeyNames[0] #>", "<#= property.DisplayPropertyName #>", <#= ModelVariable #>.<#= property.ForeignKeyPropertyNames[0] #>);
 <# } #>
             return View(<#= ModelVariable #>);
         }
@@ -235,9 +235,9 @@ namespace <#= Namespace #>
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 <# if (UseAsync) { #>
-            <#= ModelTypeName #> <#= ModelVariable #> = await db.<#= entitySetName #>.FindAsync(id);
+            <#= ModelTypeName #> <#= ModelVariable #> = await ctx.<#= entitySetName #>.FindAsync(id);
 <# } else { #>
-            <#= ModelTypeName #> <#= ModelVariable #> = db.<#= entitySetName #>.Find(id);
+            <#= ModelTypeName #> <#= ModelVariable #> = ctx.<#= entitySetName #>.Find(id);
 <# } #>
             if (<#= ModelVariable #> == null)
             {
@@ -256,15 +256,15 @@ namespace <#= Namespace #>
 <# } #>
         {
 <# if (UseAsync) { #>
-            <#= ModelTypeName #> <#= ModelVariable #> = await db.<#= entitySetName #>.FindAsync(id);
+            <#= ModelTypeName #> <#= ModelVariable #> = await ctx.<#= entitySetName #>.FindAsync(id);
 <# } else { #>
-            <#= ModelTypeName #> <#= ModelVariable #> = db.<#= entitySetName #>.Find(id);
+            <#= ModelTypeName #> <#= ModelVariable #> = ctx.<#= entitySetName #>.Find(id);
 <# } #>
-            db.<#= entitySetName #>.Remove(<#= ModelVariable #>);
+            ctx.<#= entitySetName #>.Remove(<#= ModelVariable #>);
 <# if (UseAsync) { #>
-            await db.SaveChangesAsync();
+            await ctx.SaveChangesAsync();
 <# } else { #>
-            db.SaveChanges();
+            ctx.SaveChanges();
 <# } #>
             return RedirectToAction("Index");
         }
@@ -273,7 +273,7 @@ namespace <#= Namespace #>
         {
             if (disposing)
             {
-                db.Dispose();
+                ctx.Dispose();
             }
             base.Dispose(disposing);
         }

@@ -187,10 +187,10 @@
     <Content Include="Views\Passenger\Index.cshtml" />
     <Content Include="Views\Guest\Create.cshtml" />
     <Content Include="Views\Guest\List.cshtml" />
-    <Content Include="Views\Guest\Edit.cshtml" />
     <Content Include="Views\Guest\Delete.cshtml" />
     <Content Include="Views\Passenger\Delete.cshtml" />
     <Content Include="Views\Passenger\Edit.cshtml" />
+    <Content Include="Views\Guest\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

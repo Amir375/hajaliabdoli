@@ -38,6 +38,7 @@ namespace HotelWebSite.Controllers
                 TempData["Message"] = $"{j}{Pass.Name} {Pass.Family}  با موفقیت ثبت شد";
                 return RedirectToAction("Index");
             }
+            TempData["FMessage"] = $"فرم مسافر دارای خطا میباشد";
             return View(Pass);
         }
 
@@ -66,10 +67,30 @@ namespace HotelWebSite.Controllers
         [ActionName("Edit")]
         public ActionResult EditPassenger(Passenger passenger)
         {
-            HotelDb ctx = new HotelDb();
-            ctx.Entry<Passenger>(passenger).State = System.Data.Entity.EntityState.Modified;
-            ctx.SaveChanges();
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                var j = " ";
+                HotelDb ctx = new HotelDb();
+                ctx.Entry<Passenger>(passenger).State = System.Data.Entity.EntityState.Modified;
+                ctx.SaveChanges();
+                if (passenger.Sex == "Female")
+                {
+                    j = "خانم ";
+                }
+                else if (passenger.Sex == "Man")
+                {
+                    j = "آقای ";
+                }
+                else
+                    j = null;
+
+                TempData["Message"] = $"اطلاعات {j} \" {passenger.Name} {passenger.Family} \"  با موفقیت ویرایش شد";
+
+                return RedirectToAction("Index");
+            }
+            TempData["FMessage"] = $"فرم ویرایش مسافر دارای خطا میباشد";
+            return View(passenger);
+
         }
 
     }

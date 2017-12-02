@@ -65,7 +65,7 @@ namespace Hotels.Model.Migrations
                 .Index(t => t.Booking_Id);
             
             CreateTable(
-                "dbo.People",
+                "People.Person",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
@@ -75,16 +75,9 @@ namespace Hotels.Model.Migrations
                         NationalCode = c.String(nullable: false, maxLength: 10),
                         Sex = c.String(),
                         Location = c.String(maxLength: 100),
-                        Username = c.String(),
-                        Password = c.String(),
-                        PasswordHash = c.String(),
-                        DaysStays = c.String(),
-                        PassportNumber = c.String(maxLength: 9),
-                        Discriminator = c.String(nullable: false, maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
-                .Index(t => t.NationalCode, unique: true)
-                .Index(t => t.PassportNumber, unique: true);
+                .Index(t => t.NationalCode, unique: true);
             
             CreateTable(
                 "dbo.Phones",
@@ -95,7 +88,7 @@ namespace Hotels.Model.Migrations
                         Person_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.People", t => t.Person_Id)
+                .ForeignKey("People.Person", t => t.Person_Id)
                 .Index(t => t.Person_Id);
             
             CreateTable(
@@ -111,28 +104,61 @@ namespace Hotels.Model.Migrations
                         PassengerId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.People", t => t.PassengerId, cascadeDelete: true)
+                .ForeignKey("People.Passenger", t => t.PassengerId)
                 .Index(t => t.PassengerId);
+            
+            CreateTable(
+                "People.Employee",
+                c => new
+                    {
+                        Id = c.Int(nullable: false),
+                        Username = c.String(nullable: false, maxLength: 20),
+                        PasswordHash = c.String(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("People.Person", t => t.Id)
+                .Index(t => t.Id)
+                .Index(t => t.Username, unique: true);
+            
+            CreateTable(
+                "People.Passenger",
+                c => new
+                    {
+                        Id = c.Int(nullable: false),
+                        DaysStays = c.String(),
+                        PassportNumber = c.String(nullable: false, maxLength: 9),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("People.Person", t => t.Id)
+                .Index(t => t.Id)
+                .Index(t => t.PassportNumber, unique: true);
             
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.Guests", "PassengerId", "dbo.People");
-            DropForeignKey("dbo.Phones", "Person_Id", "dbo.People");
+            DropForeignKey("People.Passenger", "Id", "People.Person");
+            DropForeignKey("People.Employee", "Id", "People.Person");
+            DropForeignKey("dbo.Guests", "PassengerId", "People.Passenger");
+            DropForeignKey("dbo.Phones", "Person_Id", "People.Person");
             DropForeignKey("dbo.Suits", "Booking_Id", "dbo.Bookings");
             DropForeignKey("dbo.Rooms", "Booking_Id", "dbo.Bookings");
             DropForeignKey("dbo.Bookings", "Option_Id", "dbo.Options");
+            DropIndex("People.Passenger", new[] { "PassportNumber" });
+            DropIndex("People.Passenger", new[] { "Id" });
+            DropIndex("People.Employee", new[] { "Username" });
+            DropIndex("People.Employee", new[] { "Id" });
             DropIndex("dbo.Guests", new[] { "PassengerId" });
             DropIndex("dbo.Phones", new[] { "Person_Id" });
-            DropIndex("dbo.People", new[] { "PassportNumber" });
-            DropIndex("dbo.People", new[] { "NationalCode" });
+            DropIndex("People.Person", new[] { "NationalCode" });
             DropIndex("dbo.Suits", new[] { "Booking_Id" });
             DropIndex("dbo.Rooms", new[] { "Booking_Id" });
             DropIndex("dbo.Bookings", new[] { "Option_Id" });
+            DropTable("People.Passenger");
+            DropTable("People.Employee");
             DropTable("dbo.Guests");
             DropTable("dbo.Phones");
-            DropTable("dbo.People");
+            DropTable("People.Person");
             DropTable("dbo.Suits");
             DropTable("dbo.Rooms");
             DropTable("dbo.Options");

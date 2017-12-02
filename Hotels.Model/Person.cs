@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Hotels.Model
 {
+    [Table("Person", Schema = "People")]
     public abstract class Person
     {
         public int Id { get; set; }

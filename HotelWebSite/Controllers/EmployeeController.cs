@@ -43,6 +43,7 @@ namespace HotelWebSite.Controllers
                 TempData["Message"] = $"{j}{employee.Name} {employee.Family}  با موفقیت ثبت شد";
                 return RedirectToAction("Index");
             }
+            TempData["FMessage"] = $"فرم شما دارای خطا میباشد";
             return View(employee);
         }
         public ActionResult Delete (int id)
@@ -70,18 +71,30 @@ namespace HotelWebSite.Controllers
         [ActionName("Edit")]
         public ActionResult EditEmployee (Employee Empo)
         {
-            var j = "def";
-            ctx.Entry<Employee>(Empo).State = System.Data.Entity.EntityState.Modified;
-            if (string.IsNullOrEmpty(Empo.PasswordHash))
-                //ctx.Entry<Employee>(employee).Property("PasswordHash").IsModified = false;
-                ctx.Entry<Employee>(Empo).Property(nameof(Empo.PasswordHash)).IsModified = false;
-            ctx.SaveChanges();
-            if (Empo.Sex == "Female")
-                j = "خانم ";
-            else
-                j = "آقای ";
-            TempData["Message"] = $"اطلاعات {j} \" {Empo.Name} {Empo.Family} \"  با موفقیت ثبت شد";
-            return RedirectToAction("Index");
+            var j = " ";
+            if (ModelState.IsValid)
+            {
+                ctx.Entry<Employee>(Empo).State = System.Data.Entity.EntityState.Modified;
+                if (string.IsNullOrEmpty(Empo.PasswordHash))
+                    //ctx.Entry<Employee>(employee).Property("PasswordHash").IsModified = false;
+                    ctx.Entry<Employee>(Empo).Property(nameof(Empo.PasswordHash)).IsModified = false;
+                ctx.SaveChanges();
+                if (Empo.Sex == "Female")
+                {
+                    j = "خانم ";
+                }
+                else if (Empo.Sex == "Man")
+                {
+                    j = "آقای ";
+                }
+                else
+                    j = null;
+
+                TempData["Message"] = $"اطلاعات {j} \" {Empo.Name} {Empo.Family} \"  با موفقیت ثبت شد";
+                return RedirectToAction("Index");
+            }
+            TempData["FMessage"] = $"فرم شما دارای خطا میباشد";
+            return View(Empo);
 
         }
 

@@ -3,7 +3,126 @@
     ViewBag.Title = "Edit";
 }
 
-<form method="post" class="form-horizontal">
+
+
+@using (Html.BeginForm("Edit", "Employee", FormMethod.Post,
+                                        new { @class = "form-horizontal" }))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Name, new
+       {
+           @class = "form-control",
+           placeholder = "نام"
+       })
+            @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Family, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Family, new
+       {
+           @class = "form-control",
+           placeholder = "نام خانوادگی"
+       })
+            @Html.ValidationMessageFor(m => m.Family, "", new { @class = "text-danger" })
+
+
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.NationalCode, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.NationalCode, new
+       {
+           @class = "form-control",
+           placeholder = "کد ملی"
+       })
+            @Html.ValidationMessageFor(m => m.NationalCode, "", new { @class = "text-danger" })
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Age, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Age, new
+       {
+           @class = "form-control",
+           placeholder = "سن"
+       })
+            @Html.ValidationMessageFor(m => m.Age, "", new { @class = "text-danger" })
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">جنسیت</label>
+        <div class="col-md-5">
+            <label for="Sex-man">مرد</label>
+            <input type="radio" name="Sex" id="Sex-man" value="Man" />
+        </div>
+        <div class="col-md-5">
+            <label for="Sex-female">زن</label>
+            <input type="radio" name="Sex" id="Sex-female" value="Female" />
+        </div>
+
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Location, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(m => m.Location, new
+       {
+           @class = "form-control",
+           placeholder = "آدرس"
+       })
+            @Html.ValidationMessageFor(m => m.Location, "", new { @class = "text-danger" })
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Username, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Username, new
+       {
+           @class = "form-control",
+           placeholder = "نام کاربری"
+       })
+            @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.PasswordHash, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.PasswordFor(m => m.PasswordHash, new
+       {
+           @class = "form-control",
+           placeholder = "رمز عبور"
+       })
+            @Html.ValidationMessageFor(m => m.PasswordHash, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <button class="btn btn-sm btn-success pull-left" type="submit">
+            <span class="glyphicon glyphicon-save"></span>
+            ذخیره
+        </button>
+    </div>
+}
+
+
+
+
+
+@*<form method="post" class="form-horizontal">
     <div class="form-group">
         <label class="control-label col-md-2" for="Name">نام</label>
         <div class="col-md-10">
@@ -73,5 +192,5 @@
             ذخیره
         </button>
     </div>
-</form>
+</form>*@
 

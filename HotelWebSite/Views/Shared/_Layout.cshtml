@@ -32,11 +32,18 @@
         <div class="row">
             <div class="col-xs-12">
                 @if (TempData["Message"] != null)
-            {
+                {
                     <div class="alert alert-info">
                         <strong>@TempData["Message"]</strong>
                     </div>
                 }
+                @if (TempData["FMessage"] != null)
+                {
+                    <div class="alert alert-danger">
+                        <strong>@TempData["FMessage"]</strong>
+                    </div>
+                }
+
                 @RenderBody()
             </div>
         </div>

@@ -9,6 +9,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Hotels.Model
 {
+    [Table("Employee", Schema = "People")]
     public class Employee : Person
     {
         [MaxLength(20 ,ErrorMessage = "نام کاربری وارد شده نباید بیش از 20 کاراکتر باشد")
@@ -19,7 +20,6 @@ namespace Hotels.Model
         //[NotMapped , Required, Index(IsUnique = true)]
         //public string Password { get; set; }
         [Display(Name ="رمز عبور")]
-        [Required (ErrorMessage = "پر کردن این فیلد الزامی است")]
         public string PasswordHash { get; set; }
     }
 }
