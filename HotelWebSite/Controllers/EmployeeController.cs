@@ -73,7 +73,7 @@ namespace HotelWebSite.Controllers
             if (string.IsNullOrEmpty(Empo.PasswordHash))
                 //ctx.Entry<Employee>(employee).Property("PasswordHash").IsModified = false;
                 ctx.Entry<Employee>(Empo).Property(nameof(Empo.PasswordHash)).IsModified = false;
-            ctx.Entry<Employee>(Empo).Property(nameof(Empo.Sex)).CurrentValue = "Big";
+            ctx.Entry<Employee>(Empo).Property(nameof(Empo.Sex)).IsModified = false;
             ctx.SaveChanges();
             if (Empo.Sex == "Female")
                 j = "خانم ";

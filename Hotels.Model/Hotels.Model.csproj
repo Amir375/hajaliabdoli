@@ -53,9 +53,9 @@
     <Compile Include="Employee.cs" />
     <Compile Include="Guest.cs" />
     <Compile Include="HotelDb.cs" />
-    <Compile Include="Migrations\201711300934522_First.cs" />
-    <Compile Include="Migrations\201711300934522_First.Designer.cs">
-      <DependentUpon>201711300934522_First.cs</DependentUpon>
+    <Compile Include="Migrations\201712020733402_First.cs" />
+    <Compile Include="Migrations\201712020733402_First.Designer.cs">
+      <DependentUpon>201712020733402_First.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Option.cs" />
@@ -72,8 +72,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201711300934522_First.resx">
-      <DependentUpon>201711300934522_First.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201712020733402_First.resx">
+      <DependentUpon>201712020733402_First.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
