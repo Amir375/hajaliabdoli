@@ -6,14 +6,14 @@ namespace Hotels.Model.Migrations
     using System.Data.Entity.Migrations.Infrastructure;
     using System.Resources;
     
-    [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
+    [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
     public sealed partial class First : IMigrationMetadata
     {
         private readonly ResourceManager Resources = new ResourceManager(typeof(First));
         
         string IMigrationMetadata.Id
         {
-            get { return "201712020733402_First"; }
+            get { return "201712030240476_First"; }
         }
         
         string IMigrationMetadata.Source

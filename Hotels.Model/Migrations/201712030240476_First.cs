@@ -69,20 +69,22 @@ namespace Hotels.Model.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
-                        Family = c.String(),
-                        Age = c.String(),
-                        NationalCode = c.String(),
+                        Name = c.String(nullable: false, maxLength: 50),
+                        Family = c.String(nullable: false, maxLength: 50),
+                        Age = c.String(maxLength: 3),
+                        NationalCode = c.String(nullable: false, maxLength: 10),
                         Sex = c.String(),
-                        Location = c.String(),
+                        Location = c.String(maxLength: 100),
                         Username = c.String(),
                         Password = c.String(),
                         PasswordHash = c.String(),
                         DaysStays = c.String(),
-                        PassportNumber = c.String(),
+                        PassportNumber = c.String(maxLength: 9),
                         Discriminator = c.String(nullable: false, maxLength: 128),
                     })
-                .PrimaryKey(t => t.Id);
+                .PrimaryKey(t => t.Id)
+                .Index(t => t.NationalCode, unique: true)
+                .Index(t => t.PassportNumber, unique: true);
             
             CreateTable(
                 "dbo.Phones",
@@ -123,6 +125,8 @@ namespace Hotels.Model.Migrations
             DropForeignKey("dbo.Bookings", "Option_Id", "dbo.Options");
             DropIndex("dbo.Guests", new[] { "PassengerId" });
             DropIndex("dbo.Phones", new[] { "Person_Id" });
+            DropIndex("dbo.People", new[] { "PassportNumber" });
+            DropIndex("dbo.People", new[] { "NationalCode" });
             DropIndex("dbo.Suits", new[] { "Booking_Id" });
             DropIndex("dbo.Rooms", new[] { "Booking_Id" });
             DropIndex("dbo.Bookings", new[] { "Option_Id" });

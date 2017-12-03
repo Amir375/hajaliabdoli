@@ -12,26 +12,31 @@ namespace Hotels.Model
     {
         public int Id { get; set; }
 
-        //[MaxLength(50) , Required]
+        [MaxLength(50 , ErrorMessage = "نام نباید بیش از 50 کاراکتر باشد")
+            , Required (ErrorMessage = "پر کردن این فیلد الزامی است")]
         [Display(Name = "نام")]
         public string Name { get; set; }
 
-        //[MaxLength(50), Required]
+        [MaxLength(50 , ErrorMessage ="نام خانوادگی نباید بیش از 50 کاراکتر یاشد")
+            , Required(ErrorMessage = "پر کردن این فیلد الزامی است")]
         [Display(Name = "نام خانوادگی")]
         public string Family { get; set; }
 
-        //[MaxLength(3)]
+        [MaxLength(3 , ErrorMessage ="سن نباید بیش از 3 کاراکتر باشد")]
         [Display(Name = "سن")]
         public string Age { get; set; }
 
-        //[MaxLength(10) , Required , Index(IsUnique =true)]
+        [StringLength(10 , ErrorMessage ="شماره شناسنامه نباید بیش از 10 کاراکتر باشد")
+            , Required(ErrorMessage = "پر کردن این فیلد الزامی است")
+            , Index(IsUnique = true)]
+        [RegularExpression(@"\d{10}" , ErrorMessage = "فرمت شماره شناسنامه وارد شده اشتباه است")]
         [Display(Name = "شماره شناسنامه")]
         public string NationalCode { get; set; }
 
         [Display(Name = "جنسیت")]
         public string Sex { get; set; }
 
-        //[MaxLength(100)]
+        [MaxLength(100 , ErrorMessage = "آدرس وارد شده نباید بیش از 100 کاراکتر باشد")]
         [Display(Name = "آدرس")]
         public string Location { get; set; }
 

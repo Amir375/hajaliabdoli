@@ -19,7 +19,6 @@ namespace HotelWebSite.Controllers
 
         public ActionResult Index()
         {
-            HotelDb ctx = new HotelDb();
             var Emp = ctx.Employees.ToList();
 
             return View(Emp);
@@ -31,17 +30,20 @@ namespace HotelWebSite.Controllers
         [HttpPost]
         public ActionResult Create(Employee employee)
         {
-            var j = "def";
-            HotelDb ctx = new HotelDb();
-            ctx.Employees.Add(employee);
-            ctx.SaveChanges();
-            if (employee.Sex == "Female")
-                j = "خانم ";
-            else
-                j = "آقای ";
+                var j = "def";
+            if (ModelState.IsValid)
+            {
+                ctx.Employees.Add(employee);
+                ctx.SaveChanges();
+                if (employee.Sex == "Female")
+                    j = "خانم ";
+                else
+                    j = "آقای ";
 
-            TempData["Message"] = $"{j}{employee.Name} {employee.Family}  با موفقیت ثبت شد";
-            return RedirectToAction("Index");
+                TempData["Message"] = $"{j}{employee.Name} {employee.Family}  با موفقیت ثبت شد";
+                return RedirectToAction("Index");
+            }
+            return View(employee);
         }
         public ActionResult Delete (int id)
         {
@@ -73,7 +75,6 @@ namespace HotelWebSite.Controllers
             if (string.IsNullOrEmpty(Empo.PasswordHash))
                 //ctx.Entry<Employee>(employee).Property("PasswordHash").IsModified = false;
                 ctx.Entry<Employee>(Empo).Property(nameof(Empo.PasswordHash)).IsModified = false;
-            ctx.Entry<Employee>(Empo).Property(nameof(Empo.Sex)).IsModified = false;
             ctx.SaveChanges();
             if (Empo.Sex == "Female")
                 j = "خانم ";
@@ -82,6 +83,15 @@ namespace HotelWebSite.Controllers
             TempData["Message"] = $"اطلاعات {j} \" {Empo.Name} {Empo.Family} \"  با موفقیت ثبت شد";
             return RedirectToAction("Index");
 
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                ctx.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }

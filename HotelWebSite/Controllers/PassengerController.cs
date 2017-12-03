@@ -24,17 +24,21 @@ namespace HotelWebSite.Controllers
         public ActionResult Create(Passenger Pass)
         {
             var j = "def";
-            HotelDb ctx = new HotelDb();
-            ctx.Passengers.Add(Pass);
-            ctx.SaveChanges();
-            
-            if (Pass.Sex == "Female")
-                j = "خانم ";
-            else
-                j = "آقای ";
+            if (ModelState.IsValid)
+            {
+                HotelDb ctx = new HotelDb();
+                ctx.Passengers.Add(Pass);
+                ctx.SaveChanges();
 
-            TempData["Message"] = $"{j}{Pass.Name} {Pass.Family}  با موفقیت ثبت شد";
-            return RedirectToAction("Index");
+                if (Pass.Sex == "Female")
+                    j = "خانم ";
+                else
+                    j = "آقای ";
+
+                TempData["Message"] = $"{j}{Pass.Name} {Pass.Family}  با موفقیت ثبت شد";
+                return RedirectToAction("Index");
+            }
+            return View(Pass);
         }
 
         public ActionResult Delete(int id)
