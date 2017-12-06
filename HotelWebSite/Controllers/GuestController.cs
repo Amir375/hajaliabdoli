@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Hotels.Model;
-
+using HotelWebSite.ViewModels;
 
 namespace HotelWebSite.Controllers
 {
@@ -30,12 +30,13 @@ namespace HotelWebSite.Controllers
             ctx.SaveChanges();
             return RedirectToAction("Index","Passenger");
         }
-        public ActionResult List (int id)
+        public ActionResult List (int id)//int id
         {
             HotelDb ctx = new HotelDb();
-            var Guest = ctx.Guests.Where(e=> e.PassengerId == id); /*ctx.Guests.Where(e => e.PassengerId == id).FirstOrDefault()*/
+            var Guest = ctx.Guests.Where(g=> g.PassengerId == id); /*ctx.Guests.Where(e => e.PassengerId == id).FirstOrDefault()*/
             return View(Guest);
         }
+
         public ActionResult Edit(int id)
         {
             HotelDb ctx = new HotelDb();

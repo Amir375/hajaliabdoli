@@ -1,5 +1,12 @@
-﻿<!DOCTYPE html>
-
+﻿@using HotelWebSite.Library
+@{ 
+    var isLogin = false;
+    if (Security.GetCurrentEmployee() != null)
+    {
+        isLogin = true;
+    }
+}
+<!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -12,7 +19,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <nav class="navbar navbar-inverse">
+    <nav class="navbar navbar-inverse" style="border-radius:0px;">
         <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand" href="#">هتل سرخوشان</a>
@@ -23,8 +30,24 @@
                 <li><a href="@Url.Action("Index","Passenger")">مدیریت مسافرها</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right pull-left">
+                @if (isLogin == true)
+                {
+                    <li class="active"><a href="#">
+                        <span class="glyphicon glyphicon-user"></span>
+                        <span>@Security.GetCurrentEmployee().Name @Security.GetCurrentEmployee().Family</span>
+                        </a></li>
+                    <li><a href="@Url.Action("Logout","Security")">
+                        خروج
+                        <span class="glyphicon glyphicon-log-out"></span>
+                        </a></li>
+                }
+                else
+                {
+                    <li><a href="@Url.Action("Login","Security")"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                }
+                @*<li><a href="#"></a></li>
                 <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>*@
             </ul>
         </div>
     </nav> 
