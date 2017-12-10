@@ -28,12 +28,22 @@
                 <li><a href="@Url.Action("Index","Home")">خانه</a></li>
                 <li><a href="@Url.Action("Menu","Employee")">مدیریت کارمند ها</a></li>
                 <li><a href="@Url.Action("Index","Passenger")">مدیریت مسافرها</a></li>
+                <li><a href="#">مدیریت اتاق ها</a></li>
+                <li><a href="@Url.Action("Menu","Suit")">مدیریت سوییت ها</a></li>
+
             </ul>
             <ul class="nav navbar-nav navbar-right pull-left">
                 @if (isLogin == true)
                 {
                     <li class="active"><a href="#">
+                        @if (Security.GetCurrentEmployee().PhotoPath == null)
+                        {
                         <span class="glyphicon glyphicon-user"></span>
+                        }
+                        else
+                        {
+                            <img src="@Security.GetCurrentEmployee().PhotoPath"  style="width:30px; height:30px;" />
+                        }
                         <span>@Security.GetCurrentEmployee().Name @Security.GetCurrentEmployee().Family</span>
                         </a></li>
                     <li><a href="@Url.Action("Logout","Security")">
@@ -53,7 +63,7 @@
     </nav> 
     <div class="container">
         <div class="row">
-            <div class="col-xs-12">
+            <div class="col-sm-12">
                 @if (TempData["Message"] != null)
                 {
                     <div class="alert alert-info">

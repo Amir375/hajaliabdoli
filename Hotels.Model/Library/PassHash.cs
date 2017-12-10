@@ -15,9 +15,9 @@ namespace Hotels.Model.Library
 
             // step 1, calculate MD5 hash from input
 
-            MD5 md5 = System.Security.Cryptography.MD5.Create();
+            MD5 md5 = MD5.Create();
 
-            byte[] inputBytes = System.Text.Encoding.UTF8.GetBytes(input);
+            byte[] inputBytes = Encoding.UTF8.GetBytes(input);
 
             byte[] hash = md5.ComputeHash(inputBytes);
 

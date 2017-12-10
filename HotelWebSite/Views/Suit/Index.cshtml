@@ -1,0 +1,147 @@
+﻿@model IEnumerable<Hotels.Model.Suit>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@foreach (var item in Model)
+{
+
+    <div class="col-sm-10  col-sm-pull-1 " style="background-color:aliceblue;margin-top:25px;margin-bottom:25px;">
+        <div class="row">
+            <div class="col-sm-12" style=" min-height:50px;">
+                    <div class="col-sm-6" style="background-color:green;">
+                            <div class="row">
+                                <img src="@item.PhotoPath" style="width:460px;height:280px;" />
+                            </div>
+                        </div>
+                <div class="col-sm-6" style="background-color:aliceblue;min-height:200px;">
+                    <div class="col-sm-12" style="margin-top:5px;font-size:17px;color:black;min-height:200px;">
+                        @Html.DisplayNameFor(model => model.SuitType) : @Html.DisplayFor(modelItem => item.SuitType) <br />
+                        <span style="font-size:13px;" class="glyphicon glyphicon-certificate"></span> @Html.DisplayNameFor(model => model.Floor) : @Html.DisplayFor(modelItem => item.Floor) <br />
+                        <span style="font-size:13px;" class="glyphicon glyphicon-user"></span> @Html.DisplayNameFor(model => model.Capacity) : @Html.DisplayFor(modelItem => item.Capacity) <br />
+                        <span style="font-size:13px;" class="glyphicon glyphicon-bed"></span> @Html.DisplayNameFor(model => model.NumberOfBeds) : @Html.DisplayFor(modelItem => item.NumberOfBeds) <br />
+                        <ul style="font-size:13px;">@Html.DisplayNameFor(model => model.NumberOfSingleBeds) : @Html.DisplayFor(modelItem => item.NumberOfSingleBeds)</ul>
+                        <ul style="font-size:13px;">@Html.DisplayNameFor(model => model.NumberOfDoubleBeds) : @Html.DisplayFor(modelItem => item.NumberOfDoubleBeds)</ul>
+                        <span style="font-size:13px;" class="glyphicon glyphicon-certificate"></span> @Html.DisplayNameFor(model => model.NumberOfRoom) : @Html.DisplayFor(modelItem => item.NumberOfRoom) <br />
+                        <span style="font-size:13px;" class="glyphicon glyphicon-certificate"></span> @Html.DisplayNameFor(model => model.EmptyOrFull) :  <br />
+                        <span style="font-size:13px;" class="glyphicon glyphicon-calendar"></span> @Html.DisplayNameFor(model => model.EntryDate) : @Html.DisplayFor(modelItem => item.EntryDate) <br />
+                        <span style="font-size:13px;" class="glyphicon glyphicon-calendar"></span> @Html.DisplayNameFor(model => model.DateOfDeparture) : @Html.DisplayFor(modelItem => item.DateOfDeparture) <br />
+                        <span style="font-size:13px;" class="glyphicon glyphicon-usd"></span> @Html.DisplayNameFor(model => model.Price) : <span style="color:red;">@Html.DisplayFor(modelItem => item.Price)</span> <br />
+
+
+
+                    </div>
+                    @*<ul>@item.Capacity</ul>
+                    <ul>@item.Floor</ul>*@
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <hr />
+            امکانات : 
+            <br />
+            <br />
+        </div>
+    </div>
+
+}
+@*<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.EntryDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateOfDeparture)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmptyOrFull)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SuitType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberOfBeds)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Floor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberOfRoom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberOfSingleBeds)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberOfDoubleBeds)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Capacity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhotoPath)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.EntryDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateOfDeparture)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmptyOrFull)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SuitType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberOfBeds)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Floor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberOfRoom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberOfSingleBeds)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberOfDoubleBeds)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Capacity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhotoPath)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>*@

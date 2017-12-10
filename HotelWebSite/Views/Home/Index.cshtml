@@ -1,10 +1,21 @@
-﻿
+﻿@using HotelWebSite.Library
 @{
-    ViewBag.Title = "Index";
+
+    var isLogin = false;
+    if (Security.GetCurrentEmployee() != null)
+    {
+        isLogin = true;
+    }
+    ViewBag.Title = "Index"; 
+
 }
 
 <div class="col-sm-12 jumbotron text-center">
     <h3>
         به بخش رزرواسیون هتل سرخوشان خوش آمدید
     </h3>
+    @if (isLogin == true)
+    {
+        <h2 style="color:navy;">@Security.GetCurrentEmployee().Name @Security.GetCurrentEmployee().Family</h2>
+    }
 </div>

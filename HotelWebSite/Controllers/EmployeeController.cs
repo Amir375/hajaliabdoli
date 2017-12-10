@@ -1,7 +1,10 @@
-﻿using Hotels.Model;
+﻿
+using Hotels.Model;
 using HotelWebSite.Library;
+using HotelWebSite.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -18,27 +21,60 @@ namespace HotelWebSite.Controllers
             return View();
         }
 
-        [AuthorizeEmployee]
+        //[AuthorizeEmployee]
         public ActionResult Index()
         {
             var Emp = ctx.Employees.ToList();
             return View(Emp);
         }
 
-        [AuthorizeEmployee]
+        //[AuthorizeEmployee]
         public ActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
-        [AuthorizeEmployee]
-        public ActionResult Create(Employee employee)
+        //[AuthorizeEmployee]
+        public ActionResult Create(EmployeeCreate employee)
         {
-                var j = "def";
+
+            var guid = Guid.NewGuid().ToString();
+            var Photo = employee.PhotoFile;
+            var PhotoSize = Photo.ContentLength;
+            var PhotoType = Photo.ContentType;
+            var fileName =  guid + Path.GetExtension(Photo.FileName);
+
+            if (PhotoSize > 500 * 1024)
+            {
+                ModelState.AddModelError((nameof(employee.PhotoFile)), "سایز عکس نباید بیش از 300 کیلوبایت باشد ");
+            }
+
+            if (PhotoType != "image/jpeg" && PhotoType != "image/gif" && PhotoType != "image/png")
+            {
+                ModelState.AddModelError((nameof(employee.PhotoFile)), "فایل ارسالی باید عکس باشد  ");
+            }
+
+            var j = "def";
             if (ModelState.IsValid)
             {
-                ctx.Employees.Add(employee);
+                Photo.SaveAs(Path.Combine(
+                    Server.MapPath("~/Photos/"),
+                    fileName));
+                var Employee = new Employee()
+                {
+                    Name = employee.Name,
+                    Family = employee.Family,
+                    Age = employee.Age,
+                    Location = employee.Location,
+                    NationalCode = employee.NationalCode,
+                    PasswordHash = employee.Password,
+                    Sex = employee.Sex,
+                    Username = employee.Username,                
+                    PhotoPath = "/Photos/" + fileName
+                };
+
+                ctx.Employees.Add(Employee);
                 ctx.SaveChanges();
                 if (employee.Sex == "Female")
                     j = "خانم ";
@@ -89,7 +125,9 @@ namespace HotelWebSite.Controllers
             {
                 ctx.Entry<Employee>(Empo).State = System.Data.Entity.EntityState.Modified;
                 if (string.IsNullOrEmpty(Empo.Password))
+                {
                     ctx.Entry<Employee>(Empo).Property(nameof(Empo.Password)).IsModified = false;
+                }
                 ctx.SaveChanges();
                 if (Empo.Sex == "Female")
                 {

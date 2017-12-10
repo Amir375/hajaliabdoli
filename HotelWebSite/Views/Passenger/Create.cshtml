@@ -1,4 +1,4 @@
-﻿@model Hotels.Model.Passenger
+﻿@model HotelWebSite.ViewModels.PassengerCreate
 
 @{
     ViewBag.Title = "Create";
@@ -6,7 +6,7 @@
 
 <h2>ایجاد مسافر جدید</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Create", "Passenger", FormMethod.Post,new { @class = "form-horizontal", enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     
@@ -52,11 +52,11 @@
                 <div class="col-md-5">
                     <label for="Sex-man">مرد</label>
                     <input type="radio" name="Sex" id="Sex-man" value="Man" />
-                </div>
-                <div class="col-md-5">
+                    <br />
                     <label for="Sex-female">زن</label>
                     <input type="radio" name="Sex" id="Sex-female" value="Female" />
                 </div>
+
 
                 @Html.ValidationMessageFor(model => model.Sex, "", new { @class = "text-danger" })
             </div>
@@ -86,6 +86,22 @@
             </div>
         </div>
 
+        <div class="form-group">
+            @Html.LabelFor(m => m.PhotoFile, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                <input type="file" id="PhotoFile" name="PhotoFile" class="form-control" />
+                @*@Html.TextBoxFor(, new { type = "file" })*@
+                @Html.ValidationMessageFor(m => m.PhotoFile, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.PhotoFile, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" id="PhotoFile" name="PhotoFile" class="form-control" />
+                @Html.ValidationMessageFor(model => model.PhotoFile, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
 
 
         <div class="form-group">

@@ -12,7 +12,7 @@ namespace Hotels.Model
     [Table("Employee", Schema = "People")]
     public class Employee : Person
     {
-        [MaxLength(20 ,ErrorMessage = "نام کاربری وارد شده نباید بیش از 20 کاراکتر باشد")
+        [MaxLength(20, ErrorMessage = "نام کاربری وارد شده نباید بیش از 20 کاراکتر باشد")
             , Required(ErrorMessage = "پر کردن این فیلد الزامی است")
             , Index(IsUnique = true)]
         [Display(Name = "نام کاربری")]
@@ -20,8 +20,7 @@ namespace Hotels.Model
 
         [NotMapped]
         [ScaffoldColumn(true)]
-        [Display(Name ="رمز عبور")]
-        //[Required, Index(IsUnique = true)]
+        [Display(Name = "رمز عبور")]
         public string Password
         {
             get
@@ -31,10 +30,11 @@ namespace Hotels.Model
 
             set
             {
-                this.PasswordHash = PassHash.CalculateMD5Hash(value);
+                this.PasswordHash = PassHash.CalculateMD5Hash(value.ToString());
             }
         }
         [ScaffoldColumn(false)]
         public string PasswordHash { get; set; }
+        public string PhotoPath { get; set; }
     }
 }

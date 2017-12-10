@@ -8,61 +8,76 @@
 <br />
 <table class="table table-bordered">
     <tr>
+        <th>
+            عکس
+        </th>
         <th class="text-center">
             @Html.DisplayNameFor(model => model.Name)
         </th>
         <th class="text-center">
             @Html.DisplayNameFor(model => model.Family)
         </th>
-        <th class="text-center">
+        @*<th class="text-center">
             @Html.DisplayNameFor(model => model.Age)
-        </th>
+        </th>*@
         <th class="text-center">
             @Html.DisplayNameFor(model => model.NationalCode)
         </th>
-        <th class="text-center">
+        @*<th class="text-center">
             @Html.DisplayNameFor(model => model.Sex)
-        </th>
-        <th class="text-center">
+        </th>*@
+        @*<th class="text-center">
             @Html.DisplayNameFor(model => model.Location)
-        </th>
-        <th class="text-center">
+        </th>*@
+        @*<th class="text-center">
             @Html.DisplayNameFor(model => model.DaysStays)
-        </th>
+        </th>*@
         <th class="text-center">
             @Html.DisplayNameFor(model => model.PassportNumber)
         </th>
+        <th class="text-center">مشاهده تمامی <br />اطلاعات مسافر</th>
         <th class="text-center">اضافه کردن همراه</th>
         <th class="text-center">مشاهده اطلاعات همراه</th>
+        <th class="text-center">رزرو  اتاق / سوییت</th>
         <th class="text-center">عملیات</th>
     </tr>
 
 @foreach (var item in Model) {
     <tr class="text-center">
         <td>
+            <img src="@item.PhotoPath" style="max-height:60px" class="img-thumbnail" />
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Family)
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.Age)
-        </td>
+        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.NationalCode)
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.Sex)
-        </td>
-        <td>
+        </td>*@
+        @*<td>
             @Html.DisplayFor(modelItem => item.Location)
-        </td>
-        <td>
+        </td>*@
+        @*<td>
             @Html.DisplayFor(modelItem => item.DaysStays)
-        </td>
+        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.PassportNumber)
         </td>
+        <td>
+            <a href="#" class="btn btn-default btn-sm">
+                مشاهده کردن
+                <span class="glyphicon glyphicon-eye-open"></span>
+            </a>
+        </td>
+
         <td>
             <a href="@Url.Action("Create","Guest",new { id = item.Id })" class="btn btn-primary btn-sm">
                 اضافه کردن
@@ -76,6 +91,14 @@
                 <span class="glyphicon glyphicon-eye-open"></span>
             </a>
         </td>
+
+        <td>
+            <a href="@Url.Action("Create","Booking",new { id = item.Id })" class="btn btn-default btn-sm">
+                رزرو 
+                <span class="glyphicon glyphicon-list-alt"></span>
+            </a>
+        </td>
+
 
         <td>
             <a href="@Url.Action("Delete","Passenger",new { id = item.Id })" class="btn btn-danger btn-sm">

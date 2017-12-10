@@ -4,85 +4,115 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
 
-<h3>آیا از حذف این اطلاعات اطمینان دارید ؟ </h3>
-<div>
-    <h4>Passenger</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Family)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Family)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Age)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Age)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NationalCode)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NationalCode)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Sex)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Sex)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Location)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Location)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DaysStays)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DaysStays)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PassportNumber)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PassportNumber)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
+<div class="col-md-12 jumbotron">
+    <table class="table table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <th class="text-center">@Html.DisplayNameFor(model => model.Name)</th>
+                <th class="text-center">@Html.DisplayNameFor(model => model.Family)</th>
+                <th class="text-center">@Html.DisplayNameFor(model => model.Age)</th>
+                <th class="text-center">@Html.DisplayNameFor(model => model.Sex)</th>
+                <th class="text-center">@Html.DisplayNameFor(model => model.NationalCode)</th>
+                <th class="text-center">@Html.DisplayNameFor(model => model.Location)</th>
+                <th class="text-center">@Html.DisplayNameFor(model => model.PassportNumber)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="text-center">
+                <td>@Html.DisplayFor(model => model.Name)</td>
+                <td>@Html.DisplayFor(model => model.Family)</td>
+                <td>@Html.DisplayFor(model => model.Age)</td>
+                <td>@Html.DisplayFor(model => model.Sex)</td>
+                <td>@Html.DisplayFor(model => model.NationalCode)</td>
+                <td>@Html.DisplayFor(model => model.Location)</td>
+                <td>@Html.DisplayFor(model => model.PassportNumber)</td>
+            </tr>
+        </tbody>
+    </table>
+    <h3>
+        آیا میخواهید این اطلاعات را حذف کنید ؟
+    </h3>
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            <a href="@Url.Action("Index")" class="btn btn-success">
+                برگشت به لیست مسافران
+            </a>
         </div>
     }
 </div>
+    @*<div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Family)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Family)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Age)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Age)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.NationalCode)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.NationalCode)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Sex)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Sex)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Location)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Location)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PassportNumber)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PassportNumber)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>*@

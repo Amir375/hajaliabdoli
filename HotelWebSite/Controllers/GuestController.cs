@@ -33,6 +33,10 @@ namespace HotelWebSite.Controllers
         public ActionResult List (int id)//int id
         {
             HotelDb ctx = new HotelDb();
+            var Passenger = ctx.Passengers.Where(p => p.Id == id).FirstOrDefault();
+            ViewBag.PassengerSex = Passenger.Sex;
+            ViewBag.PassengerName = Passenger.Name;
+            ViewBag.PassengerFamily = Passenger.Family;
             var Guest = ctx.Guests.Where(g=> g.PassengerId == id); /*ctx.Guests.Where(e => e.PassengerId == id).FirstOrDefault()*/
             return View(Guest);
         }

@@ -6,6 +6,7 @@
 <table class="table table-bordered table-striped table-hover">
     <thead>
         <tr>
+            <th class="text-center">عکس</th>
             <th class="text-center">نام</th>
             <th class="text-center">نام خانوادگی</th>
             <th class="text-center">سن</th>
@@ -19,6 +20,9 @@
         @foreach (var item in Model)
         {
             <tr class="text-center">
+                <td>
+                    <img src="@item.PhotoPath" style="max-height:60px" class="img-thumbnail" />
+                </td>
                 <td>@item.Name</td>
                 <td>@item.Family</td>
                 <td>@item.Age</td>

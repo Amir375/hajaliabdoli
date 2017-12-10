@@ -1,10 +1,19 @@
 ﻿@model IEnumerable<Hotels.Model.Guest>
 
 @{
+    var MrORMis = "a";
+    if (ViewBag.PassengerSex == "Female")
+    {
+        MrORMis = "خانم ";
+    }
+    else
+    {
+        MrORMis = "آقای ";
+    }
     ViewBag.Title = "List";
 }
 
-<h3>لیست همراهان :</h3>
+<h3>لیست همراهان  @MrORMis @ViewBag.PassengerName @ViewBag.PassengerFamily :</h3>
 <br/>
 
 <table class="table table-bordered">
@@ -23,9 +32,6 @@
         </th>
         <th class="text-center">
             @Html.DisplayNameFor(model => model.NationalCode)
-        </th>
-        <th class="text-center">
-            @Html.DisplayNameFor(model => model.Sex)
         </th>
         <th>عملیات</th>
     </tr>
@@ -46,9 +52,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.NationalCode)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Sex)
         </td>
         <td>
             <a href="@Url.Action("Delete","Guest",new { id = item.Id })" class="btn btn-danger btn-sm">

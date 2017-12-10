@@ -50,19 +50,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Booking.cs" />
+    <Compile Include="Migrations\201712101809120_First_Modol_Migration.cs" />
+    <Compile Include="Migrations\201712101809120_First_Modol_Migration.Designer.cs">
+      <DependentUpon>201712101809120_First_Modol_Migration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="SuitBookings.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="Guest.cs" />
     <Compile Include="HotelDb.cs" />
     <Compile Include="Library\PassHash.cs" />
-    <Compile Include="Migrations\201712022013138_First.cs" />
-    <Compile Include="Migrations\201712022013138_First.Designer.cs">
-      <DependentUpon>201712022013138_First.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201712030858226_First1.cs" />
-    <Compile Include="Migrations\201712030858226_First1.Designer.cs">
-      <DependentUpon>201712030858226_First1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Option.cs" />
     <Compile Include="Passenger.cs" />
     <Compile Include="Person.cs" />
@@ -83,11 +80,8 @@
     <Content Include="Scripts\jquery-1.12.4.min.js" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201712022013138_First.resx">
-      <DependentUpon>201712022013138_First.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712030858226_First1.resx">
-      <DependentUpon>201712030858226_First1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201712101809120_First_Modol_Migration.resx">
+      <DependentUpon>201712101809120_First_Modol_Migration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

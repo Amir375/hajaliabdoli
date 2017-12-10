@@ -11,8 +11,6 @@ namespace Hotels.Model
     [Table("Passenger", Schema = "People")]
     public class Passenger : Person
     {
-        [Display(Name = "تعداد روزهای اقامت")]
-        public string DaysStays { get; set; }
 
         [Required(ErrorMessage = "پر کردن این فیلد الزامی است")]
         [Index(IsUnique =true)]
@@ -20,7 +18,11 @@ namespace Hotels.Model
         [RegularExpression (@"^\w\d{8}$",ErrorMessage ="فرمت پاسپورت وارد شده اشتباه است")]
         [Display(Name = "شماره پاسپورت")]
         public string PassportNumber { get; set; }
-
+        //public string PhotoPath { get; set; }
+        public virtual List<Booking> Bookings { get; set; }
         public virtual List<Guest> Guests { get; set; }
+
+        public string PhotoPath { get; set; }
+
     }
 }
