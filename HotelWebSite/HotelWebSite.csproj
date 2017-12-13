@@ -202,12 +202,14 @@
     <Content Include="Views\Passenger\Edit.cshtml" />
     <Content Include="Views\Guest\Edit.cshtml" />
     <Content Include="Views\Security\Login.cshtml" />
-    <Content Include="Views\Suit\Create.cshtml" />
     <Content Include="Views\Booking\Create.cshtml" />
-    <Content Include="Views\Suit\SuitBooking.cshtml" />
     <Content Include="Views\Suit\Index.cshtml" />
-    <Content Include="Views\Booking\SuitBookingSearch.cshtml" />
     <Content Include="Views\Suit\Menu.cshtml" />
+    <Content Include="Views\Booking\Menu.cshtml" />
+    <Content Include="Views\Booking\SearchingInSuitOrRoom.cshtml" />
+    <Content Include="Views\Passenger\PassengerReservation.cshtml" />
+    <Content Include="Views\Suit\Create.cshtml" />
+    <Content Include="Views\Suit\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

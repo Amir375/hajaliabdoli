@@ -28,7 +28,7 @@ namespace HotelWebSite.Controllers
             HotelDb ctx = new HotelDb();
             ctx.Guests.Add(guest);
             ctx.SaveChanges();
-            return RedirectToAction("Index","Passenger");
+            return RedirectToAction("Create","Guest",new { guest.PassengerId });
         }
         public ActionResult List (int id)//int id
         {

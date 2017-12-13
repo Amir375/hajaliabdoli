@@ -4,10 +4,10 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>لیست اتاق ها و سوییت ها :</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
+<p class="text-center">
+    <a href="@Url.Action("Create")" class="btn btn-primary">افزودن اتاق / سوییت جدید</a>
 </p>
 @foreach (var item in Model)
 {
@@ -22,7 +22,7 @@
                         </div>
                 <div class="col-sm-6" style="background-color:aliceblue;min-height:200px;">
                     <div class="col-sm-12" style="margin-top:5px;font-size:17px;color:black;min-height:200px;">
-                        @Html.DisplayNameFor(model => model.SuitType) : @Html.DisplayFor(modelItem => item.SuitType) <br />
+                        @Html.DisplayFor(modelItem => item.Title) <br />
                         <span style="font-size:13px;" class="glyphicon glyphicon-certificate"></span> @Html.DisplayNameFor(model => model.Floor) : @Html.DisplayFor(modelItem => item.Floor) <br />
                         <span style="font-size:13px;" class="glyphicon glyphicon-user"></span> @Html.DisplayNameFor(model => model.Capacity) : @Html.DisplayFor(modelItem => item.Capacity) <br />
                         <span style="font-size:13px;" class="glyphicon glyphicon-bed"></span> @Html.DisplayNameFor(model => model.NumberOfBeds) : @Html.DisplayFor(modelItem => item.NumberOfBeds) <br />
@@ -30,11 +30,10 @@
                         <ul style="font-size:13px;">@Html.DisplayNameFor(model => model.NumberOfDoubleBeds) : @Html.DisplayFor(modelItem => item.NumberOfDoubleBeds)</ul>
                         <span style="font-size:13px;" class="glyphicon glyphicon-certificate"></span> @Html.DisplayNameFor(model => model.NumberOfRoom) : @Html.DisplayFor(modelItem => item.NumberOfRoom) <br />
                         <span style="font-size:13px;" class="glyphicon glyphicon-certificate"></span> @Html.DisplayNameFor(model => model.EmptyOrFull) :  <br />
-                        <span style="font-size:13px;" class="glyphicon glyphicon-calendar"></span> @Html.DisplayNameFor(model => model.EntryDate) : @Html.DisplayFor(modelItem => item.EntryDate) <br />
-                        <span style="font-size:13px;" class="glyphicon glyphicon-calendar"></span> @Html.DisplayNameFor(model => model.DateOfDeparture) : @Html.DisplayFor(modelItem => item.DateOfDeparture) <br />
-                        <span style="font-size:13px;" class="glyphicon glyphicon-usd"></span> @Html.DisplayNameFor(model => model.Price) : <span style="color:red;">@Html.DisplayFor(modelItem => item.Price)</span> <br />
-
-
+                        <span style="font-size:13px;" class="glyphicon glyphicon-usd"></span> @Html.DisplayNameFor(model => model.Price) : <span style="color:red;">@{var Price = item.Price; } @{ ViewBag.Price = $"{Price:###,#}"; } @ViewBag.Price تومان</span> <br />
+                        <br />
+                            <a href="@Url.Action("Delete" , "Suit" , new { id = item.Id })" class="btn btn-danger col-xs-5">حذف</a>
+                            <a href="@Url.Action("Edit" , "Suit" , new { id = item.Id })" class="btn btn-success col-xs-5 col-xs-offset-1">ویرایش</a>
 
                     </div>
                     @*<ul>@item.Capacity</ul>

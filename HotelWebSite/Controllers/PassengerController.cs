@@ -16,6 +16,7 @@ namespace HotelWebSite.Controllers
         {
             HotelDb ctx = new HotelDb();
             var Passenger = ctx.Passengers.ToList();
+            
             return View(Passenger);
         }
         public ActionResult Create()
@@ -128,5 +129,35 @@ namespace HotelWebSite.Controllers
 
         }
 
+        public ActionResult PassengerReservation (int id)
+        {
+            HotelDb ctx = new HotelDb();
+            var pas = ctx.Bookings.Where(q => q.PassengerId == id).Count();
+            if (pas == 0)
+            {
+
+                TempData["FMessage"] = "این مسافر هنوز هیچ رزروی انجام نداده است  ";
+                return RedirectToAction("Index", "Passenger");
+            }
+            //ctx.Suits.Where(ctx.Bookings.Select(b => b.PassengerId == id));   Sum(m => m.Price)
+
+            var TotalPrice = ctx.Bookings.Where(m => m.PassengerId == id && m.Expire != true).Select(m => m.Price).Sum();
+            ViewBag.TotalSuit = ctx.Bookings.Where(a => a.PassengerId == id && a.Expire != true).LongCount(a => a.SuitId == a.SuitId);
+            ViewBag.TotalPrice =  $"{TotalPrice:###,#}";
+            var b = from booking in ctx.Bookings
+                    join suit in ctx.Suits on booking.SuitId equals suit.Id
+                    where booking.PassengerId == id && booking.Expire != true
+                    select suit;
+
+
+            return View(b);
+            //var Er = ctx.Suits.Where(s => s.Id == ctx.Bookings.Where(b => b.PassengerId == id).Select(b => b.SuitId));
+            //var a = from p in ctx.Bookings
+            //        join v in ctx.Suits on p.SuitId equals v.Id
+            //        where p.PassengerId == id
+            //        select 
+
+
+        }
     }
 }

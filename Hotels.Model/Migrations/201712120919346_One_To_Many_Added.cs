@@ -3,7 +3,7 @@ namespace Hotels.Model.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class First_Modol_Migration : DbMigration
+    public partial class One_To_Many_Added : DbMigration
     {
         public override void Up()
         {
@@ -18,10 +18,17 @@ namespace Hotels.Model.Migrations
                         NumberOfPerson = c.Int(nullable: false),
                         NumberOfChild = c.Int(nullable: false),
                         SuitOrRoom = c.String(),
+                        Price = c.Long(nullable: false),
+                        PassengerId = c.Int(nullable: false),
+                        SuitId = c.Int(nullable: false),
                         Room_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
+                .ForeignKey("People.Passenger", t => t.PassengerId)
+                .ForeignKey("dbo.Suits", t => t.SuitId, cascadeDelete: true)
                 .ForeignKey("dbo.Rooms", t => t.Room_Id)
+                .Index(t => t.PassengerId)
+                .Index(t => t.SuitId)
                 .Index(t => t.Room_Id);
             
             CreateTable(
@@ -128,46 +135,6 @@ namespace Hotels.Model.Migrations
                 .Index(t => t.Option_Id);
             
             CreateTable(
-                "dbo.SuitBookings",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        SuitId = c.Int(nullable: false),
-                        BookingId = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Bookings", t => t.BookingId, cascadeDelete: true)
-                .ForeignKey("dbo.Suits", t => t.SuitId, cascadeDelete: true)
-                .Index(t => t.SuitId)
-                .Index(t => t.BookingId);
-            
-            CreateTable(
-                "dbo.PassengerBookings",
-                c => new
-                    {
-                        Passenger_Id = c.Int(nullable: false),
-                        Booking_Id = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => new { t.Passenger_Id, t.Booking_Id })
-                .ForeignKey("People.Passenger", t => t.Passenger_Id, cascadeDelete: true)
-                .ForeignKey("dbo.Bookings", t => t.Booking_Id, cascadeDelete: true)
-                .Index(t => t.Passenger_Id)
-                .Index(t => t.Booking_Id);
-            
-            CreateTable(
-                "dbo.SuitBookings1",
-                c => new
-                    {
-                        Suit_Id = c.Int(nullable: false),
-                        Booking_Id = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => new { t.Suit_Id, t.Booking_Id })
-                .ForeignKey("dbo.Suits", t => t.Suit_Id, cascadeDelete: true)
-                .ForeignKey("dbo.Bookings", t => t.Booking_Id, cascadeDelete: true)
-                .Index(t => t.Suit_Id)
-                .Index(t => t.Booking_Id);
-            
-            CreateTable(
                 "People.Employee",
                 c => new
                     {
@@ -200,38 +167,27 @@ namespace Hotels.Model.Migrations
         {
             DropForeignKey("People.Passenger", "Id", "People.Person");
             DropForeignKey("People.Employee", "Id", "People.Person");
-            DropForeignKey("dbo.SuitBookings", "SuitId", "dbo.Suits");
-            DropForeignKey("dbo.SuitBookings", "BookingId", "dbo.Bookings");
             DropForeignKey("dbo.Suits", "Option_Id", "dbo.Options");
             DropForeignKey("dbo.Rooms", "Option_Id", "dbo.Options");
             DropForeignKey("dbo.Bookings", "Room_Id", "dbo.Rooms");
-            DropForeignKey("dbo.SuitBookings1", "Booking_Id", "dbo.Bookings");
-            DropForeignKey("dbo.SuitBookings1", "Suit_Id", "dbo.Suits");
+            DropForeignKey("dbo.Bookings", "SuitId", "dbo.Suits");
             DropForeignKey("dbo.Phones", "Person_Id", "People.Person");
             DropForeignKey("dbo.Guests", "PassengerId", "People.Passenger");
-            DropForeignKey("dbo.PassengerBookings", "Booking_Id", "dbo.Bookings");
-            DropForeignKey("dbo.PassengerBookings", "Passenger_Id", "People.Passenger");
+            DropForeignKey("dbo.Bookings", "PassengerId", "People.Passenger");
             DropIndex("People.Passenger", new[] { "PassportNumber" });
             DropIndex("People.Passenger", new[] { "Id" });
             DropIndex("People.Employee", new[] { "Username" });
             DropIndex("People.Employee", new[] { "Id" });
-            DropIndex("dbo.SuitBookings1", new[] { "Booking_Id" });
-            DropIndex("dbo.SuitBookings1", new[] { "Suit_Id" });
-            DropIndex("dbo.PassengerBookings", new[] { "Booking_Id" });
-            DropIndex("dbo.PassengerBookings", new[] { "Passenger_Id" });
-            DropIndex("dbo.SuitBookings", new[] { "BookingId" });
-            DropIndex("dbo.SuitBookings", new[] { "SuitId" });
             DropIndex("dbo.Rooms", new[] { "Option_Id" });
             DropIndex("dbo.Suits", new[] { "Option_Id" });
             DropIndex("dbo.Phones", new[] { "Person_Id" });
             DropIndex("dbo.Guests", new[] { "PassengerId" });
             DropIndex("People.Person", new[] { "NationalCode" });
             DropIndex("dbo.Bookings", new[] { "Room_Id" });
+            DropIndex("dbo.Bookings", new[] { "SuitId" });
+            DropIndex("dbo.Bookings", new[] { "PassengerId" });
             DropTable("People.Passenger");
             DropTable("People.Employee");
-            DropTable("dbo.SuitBookings1");
-            DropTable("dbo.PassengerBookings");
-            DropTable("dbo.SuitBookings");
             DropTable("dbo.Rooms");
             DropTable("dbo.Options");
             DropTable("dbo.Suits");

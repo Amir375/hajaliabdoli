@@ -20,9 +20,9 @@
         @*<th class="text-center">
             @Html.DisplayNameFor(model => model.Age)
         </th>*@
-        <th class="text-center">
+        @*<th class="text-center">
             @Html.DisplayNameFor(model => model.NationalCode)
-        </th>
+        </th>*@
         @*<th class="text-center">
             @Html.DisplayNameFor(model => model.Sex)
         </th>*@
@@ -39,6 +39,7 @@
         <th class="text-center">اضافه کردن همراه</th>
         <th class="text-center">مشاهده اطلاعات همراه</th>
         <th class="text-center">رزرو  اتاق / سوییت</th>
+        <th class="text-center">مشاهده رزرو های<br/> انجام شده</th>
         <th class="text-center">عملیات</th>
     </tr>
 
@@ -56,9 +57,9 @@
         @*<td>
             @Html.DisplayFor(modelItem => item.Age)
         </td>*@
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.NationalCode)
-        </td>
+        </td>*@
         @*<td>
             @Html.DisplayFor(modelItem => item.Sex)
         </td>*@
@@ -93,12 +94,18 @@
         </td>
 
         <td>
-            <a href="@Url.Action("Create","Booking",new { id = item.Id })" class="btn btn-default btn-sm">
+            <a href="@Url.Action("Menu","Booking",new { id = item.Id })" class="btn btn-default btn-sm">
                 رزرو 
                 <span class="glyphicon glyphicon-list-alt"></span>
             </a>
         </td>
 
+        <td>
+            <a href="@Url.Action("PassengerReservation" , "Passenger" , new { id = item.Id })" class="btn btn-primary btn-sm">
+                
+                <span class="glyphicon glyphicon-eye-open"></span>
+            </a>
+        </td>
 
         <td>
             <a href="@Url.Action("Delete","Passenger",new { id = item.Id })" class="btn btn-danger btn-sm">

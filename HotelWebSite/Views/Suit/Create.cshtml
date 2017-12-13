@@ -1,51 +1,41 @@
 ﻿@model HotelWebSite.ViewModels.SuitCreate
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "ایجاد اتاق / سوییت جدید";
 }
 
-<h2>Create</h2>
-
-@using (Html.BeginForm("Create", "Suit", FormMethod.Post,
-                                        new { @class = "form-horizontal", enctype = "multipart/form-data" }))
+<h3>ایجاد اتاق / سوییت جدید</h3>
+@using (Html.BeginForm("Create", "Suit", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
 {
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Suit</h4>
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
         <div class="form-group">
-            @Html.LabelFor(model => model.EntryDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.EntryDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.EntryDate, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.DateOfDeparture, htmlAttributes: new { @class = "control-label col-md-2" })
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.Type, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.DateOfDeparture, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DateOfDeparture, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Type, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
 
         <div class="form-group">
-            @Html.LabelFor(model => model.EmptyOrFull, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Type, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.EmptyOrFull)
-                    @Html.ValidationMessageFor(model => model.EmptyOrFull, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.SuitType, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.SuitType, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.SuitType, "", new { @class = "text-danger" })
+                <select class="form-control" id="Type" name="Type">
+                    <option value="Suit">سوییت</option>
+                    <option value="Room">اتاق</option>
+                </select>
             </div>
         </div>
 
@@ -105,7 +95,6 @@
             </div>
         </div>
 
-
         <div class="form-group">
             @Html.LabelFor(m => m.PhotoFile, new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
@@ -118,12 +107,8 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="ایجاد" class="btn btn-success" />
             </div>
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

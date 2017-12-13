@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Hotels.Model.Suit>
+
+@{
+    ViewBag.Title = "PassengerReservation";
+}
+
+<div class="col-sm-12 jumbotron">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>قیمت کل</th>
+                <th>تعداد اتاق های رزرو شده</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@ViewBag.TotalPrice تومان</td>
+                <td>@ViewBag.TotalSuit</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<h3>لیست اتاق ها و سوییت های رزرو شده :</h3>
+@foreach (var item in Model)
+{
+        <div class="col-sm-10  col-sm-pull-1 " style="background-color:aliceblue;margin-top:25px;margin-bottom:25px;">
+            <div class="row">
+                <div class="col-sm-12" style=" min-height:50px;">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="row">
+                                <img src="@item.PhotoPath" class="col-xs-12" />
+                            </div>
+                        </div>
+                        <div class="col-sm-6" style="background-color:aliceblue;min-height:200px;">
+                            <div class="row">
+                                <div class="col-sm-12" style="margin-top:5px;font-size:17px;color:black;min-height:200px;">
+                                    @Html.DisplayFor(modelItem => item.Title) <br />
+                                    <span style="font-size:13px;" class="glyphicon glyphicon-certificate"></span> @Html.DisplayNameFor(model => model.Floor) : @Html.DisplayFor(modelItem => item.Floor) <br />
+                                    <span style="font-size:13px;" class="glyphicon glyphicon-user"></span> @Html.DisplayNameFor(model => model.Capacity) : @Html.DisplayFor(modelItem => item.Capacity) <br />
+                                    <span style="font-size:13px;" class="glyphicon glyphicon-bed"></span> @Html.DisplayNameFor(model => model.NumberOfBeds) : @Html.DisplayFor(modelItem => item.NumberOfBeds) <br />
+                                    <ul style="font-size:13px;">@Html.DisplayNameFor(model => model.NumberOfSingleBeds) : @Html.DisplayFor(modelItem => item.NumberOfSingleBeds)</ul>
+                                    <ul style="font-size:13px;">@Html.DisplayNameFor(model => model.NumberOfDoubleBeds) : @Html.DisplayFor(modelItem => item.NumberOfDoubleBeds)</ul>
+                                    <span style="font-size:13px;" class="glyphicon glyphicon-certificate"></span> @Html.DisplayNameFor(model => model.NumberOfRoom) : @Html.DisplayFor(modelItem => item.NumberOfRoom) <br />
+
+                                </div>
+                            </div>
+                            @*<ul>@item.Capacity</ul>
+                                <ul>@item.Floor</ul>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <hr />
+
+                    امکانات :
+                    <br />
+                    <br />
+                </div>
+            </div>
+        </div>
+}

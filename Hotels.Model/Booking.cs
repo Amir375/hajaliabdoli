@@ -30,10 +30,15 @@ namespace Hotels.Model
 
         [Display(Name = "سوییت یا اتاق")]
         public string SuitOrRoom { get; set; }
-        public List<SuitBookings> SuitBookings { get; set; }
-        public virtual List<Passenger> Passengers { get; set; }
-        //public int SuitId { get; set; }
-        public virtual List<Suit> Suit { get; set; }
-        //public Option Option { get; set; }
+
+        public long Price { get; set; }
+
+        public bool Expire { get; set; }
+
+        public int PassengerId { get; set; }
+        public Passenger Passengers { get; set; }
+        public int SuitId { get; set; }
+        public Suit Suit { get; set; }
+
     }
 }

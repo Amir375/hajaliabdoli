@@ -1,17 +1,36 @@
 ﻿@model IEnumerable<Hotels.Model.Suit>
-
 @{
-    ViewBag.Title = "SuitBooking";
+    ViewBag.Title = "جست و جو";
+
 }
 
-<h2>SuitBooking For @Session["PassengerId"]</h2>
-
-<p>
+<p >
     @Html.ActionLink("Create New", "Create")
 </p>
+<div class="col-sm-12 jumbotron success">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>تاریخ ورود</th>
+                <th>تاریخ خروج</th>
+                <th>تعداد روزهای اقامت</th>
+                <th>تعداد افراد بزرگسال</th>
+                <th>تعداد افراد خردسال</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Session["DateIn"]</td>
+                <td>@Session["DateOut"]</td>
+                <td>@ViewBag.Day</td>
+                <td>@Session["NumbeerOfPerson"]</td>
+                <td>@Session["NumberOfChild"]</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 @foreach (var item in Model)
 {
-
     <div class="col-sm-10  col-sm-pull-1 " style="background-color:aliceblue;margin-top:25px;margin-bottom:25px;">
         <div class="row">
             <div class="col-sm-12" style=" min-height:50px;">
@@ -22,17 +41,16 @@
                 </div>
                 <div class="col-sm-6" style="background-color:aliceblue;min-height:200px;">
                     <div class="col-sm-12" style="margin-top:5px;font-size:17px;color:black;min-height:200px;">
-                        @Html.DisplayNameFor(model => model.SuitType) : @Html.DisplayFor(modelItem => item.SuitType) <br />
+                         @Html.DisplayFor(modelItem => item.Title) <br />
                         <span style="font-size:13px;" class="glyphicon glyphicon-certificate"></span> @Html.DisplayNameFor(model => model.Floor) : @Html.DisplayFor(modelItem => item.Floor) <br />
                         <span style="font-size:13px;" class="glyphicon glyphicon-user"></span> @Html.DisplayNameFor(model => model.Capacity) : @Html.DisplayFor(modelItem => item.Capacity) <br />
                         <span style="font-size:13px;" class="glyphicon glyphicon-bed"></span> @Html.DisplayNameFor(model => model.NumberOfBeds) : @Html.DisplayFor(modelItem => item.NumberOfBeds) <br />
                         <ul style="font-size:13px;">@Html.DisplayNameFor(model => model.NumberOfSingleBeds) : @Html.DisplayFor(modelItem => item.NumberOfSingleBeds)</ul>
                         <ul style="font-size:13px;">@Html.DisplayNameFor(model => model.NumberOfDoubleBeds) : @Html.DisplayFor(modelItem => item.NumberOfDoubleBeds)</ul>
                         <span style="font-size:13px;" class="glyphicon glyphicon-certificate"></span> @Html.DisplayNameFor(model => model.NumberOfRoom) : @Html.DisplayFor(modelItem => item.NumberOfRoom) <br />
-                        <span style="font-size:13px;" class="glyphicon glyphicon-usd"></span> @Html.DisplayNameFor(model => model.Price) : <span style="color:red;">@Html.DisplayFor(modelItem => item.Price)</span> <br /> <br />
-                        <a href="@Url.Action("Create" , "Employee")" class="btn btn-success"><span class="glyphicon glyphicon-plus" style="font-size:13px;"></span> افزودن به لیست </a>
-
-
+                        <span style="font-size:13px;" class="glyphicon glyphicon-usd"></span> @Html.DisplayNameFor(model => model.Price) : <span style="color:red;">@{var x = item.Price; x *= ViewBag.Day; } @{ ViewBag.Price = $"{x:###,#}"; } @ViewBag.Price تومان</span> <br />
+                        <br />
+                        <a class="btn btn-success" href="@Url.Action("Create","Booking",new { id = item.Id , Price = x })">رزرو</a>
                     </div>
                     @*<ul>@item.Capacity</ul>
                         <ul>@item.Floor</ul>*@
@@ -46,5 +64,4 @@
             <br />
         </div>
     </div>
-
 }

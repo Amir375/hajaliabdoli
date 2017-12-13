@@ -22,6 +22,8 @@ namespace Hotels.Model
         public virtual List<Booking> Bookings { get; set; }
         public virtual List<Guest> Guests { get; set; }
 
+        //public List<PassengerBookings> PassengerBookings { get; set; }
+
         public string PhotoPath { get; set; }
 
     }

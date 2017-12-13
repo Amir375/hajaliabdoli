@@ -24,6 +24,46 @@ namespace HotelWebSite.Controllers
             return View(Emp);
         }
 
+        public ActionResult Delete(int id)
+        {
+            
+            HotelDb ctx = new HotelDb();
+            var a = ctx.Bookings.Where(b => b.SuitId == id && b.DateOfDeparture >= DateTime.Now).Count();
+            if (a != 0 )
+            {
+                TempData["FMessage"] = $"در حال حاضر در این اتاق مسافر وجود دارد و نمیتوان آن را حذف کرد  ";
+                return RedirectToAction("Index");
+            }
+            ctx.Suits.Remove(ctx.Suits.Find(id));
+            ctx.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Edit(int id)
+        {
+            HotelDb ctx = new HotelDb();
+            var a = ctx.Bookings.Where(b => b.SuitId == id && b.DateOfDeparture >= DateTime.Now).Count();
+            if (a != 0)
+            {
+                TempData["FMessage"] = $"در حال حاضر در این اتاق مسافر وجود دارد و نمیتوان آن را ویرایش کرد  ";
+                return RedirectToAction("Index");
+            }
+            var FindSuit = ctx.Suits.Where(m => m.Id == id).FirstOrDefault();
+            return View(FindSuit);
+
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Suit suit)
+        {
+            HotelDb ctx = new HotelDb();
+            ctx.Entry<Suit>(suit).State = System.Data.Entity.EntityState.Modified;
+            ctx.Entry<Suit>(suit).Property(nameof(suit.PhotoPath)).IsModified = false;
+            ctx.SaveChanges();
+            TempData["Message"] = $"اتاق / سوییت مورد نظر با موفقیت ویرایش شد ";
+            return RedirectToAction("Index");
+        }
+
         public ActionResult Create()
         {
             return View();
@@ -52,27 +92,32 @@ namespace HotelWebSite.Controllers
             Photo.SaveAs(Path.Combine(
                 Server.MapPath("~/Photos/"),
                 fileName));
-            var Suit = new Suit()
+            var AddSuit = new Suit()
             {
                 Title = suit.Title,
                 EmptyOrFull = suit.EmptyOrFull,
-                DateOfDeparture = suit.DateOfDeparture,
                 NumberOfBeds = suit.NumberOfBeds,
-                NumberOfRoom = suit.NumberOfRoom,
                 NumberOfDoubleBeds = suit.NumberOfDoubleBeds ,
                 NumberOfSingleBeds = suit.NumberOfSingleBeds ,
-                SuitType = suit.SuitType,
+                Type = suit.Type,
                 Floor = suit.Floor,
-                EntryDate = suit.EntryDate,
                 Capacity = suit.Capacity,
                 Price =suit.Price,
                 
                 PhotoPath = "/Photos/" + fileName
             };
 
+            if (suit.Type == "Suit")
+            {
+                AddSuit.NumberOfRoom = suit.NumberOfRoom;
+            }
+            else
+            {
+                AddSuit.NumberOfRoom = null;
+            }
 
             HotelDb ctx = new HotelDb();
-            ctx.Suits.Add(Suit);
+            ctx.Suits.Add(AddSuit);
             ctx.SaveChanges();
             return RedirectToAction("Index");
         }
