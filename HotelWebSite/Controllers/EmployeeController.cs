@@ -56,7 +56,7 @@ namespace HotelWebSite.Controllers
             }
 
             var j = "def";
-            if (ModelState.IsValid)
+            if (ModelState.IsValid)//s
             {
                 Photo.SaveAs(Path.Combine(
                     Server.MapPath("~/Photos/"),
