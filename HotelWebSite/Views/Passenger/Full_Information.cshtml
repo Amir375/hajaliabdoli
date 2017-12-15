@@ -1,0 +1,173 @@
+﻿@model HotelWebSite.ViewModels.FullInformationAboutPassenger
+@using Hotels.Model;
+
+@{
+    ViewBag.Title = "Full_Information";
+
+}
+
+
+<img src="@Model.Passenger.PhotoPath" style="width:150px; height:150px;" class="col-xs-offset-5  img-thumbnail" />
+<br />
+<br />
+<h3>اطلاعات مسافر : </h3>
+<br />
+<table class="table table-bordered" >
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Passenger.Name)</th>
+            <th>@Html.DisplayNameFor(model => model.Passenger.Family)</th>
+            <th>@Html.DisplayNameFor(model => model.Passenger.Age)</th>
+            <th>@Html.DisplayNameFor(model => model.Passenger.Sex)</th>
+            <th>@Html.DisplayNameFor(model => model.Passenger.NationalCode)</th>
+            <th>@Html.DisplayNameFor(model => model.Passenger.PassportNumber)</th>
+            <th>@Html.DisplayNameFor(model => model.Passenger.Location)</th>
+            <th>عملیات</th>
+            
+            
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Html.DisplayFor(model => model.Passenger.Name)</td>
+            <td>@Html.DisplayFor(model => model.Passenger.Family)</td>
+            <td>@Html.DisplayFor(model => model.Passenger.Age)</td>
+            <td>@Html.DisplayFor(model => model.Passenger.Sex)</td>
+            <td>@Html.DisplayFor(model => model.Passenger.NationalCode)</td>
+            <td>@Html.DisplayFor(model => model.Passenger.PassportNumber)</td>
+            <td>@Html.DisplayFor(model => model.Passenger.Location)</td>
+            <td>
+                <a href="@Url.Action("Delete" , "Passenger" , new { id = Model.Passenger.Id })" class="btn btn-danger ">حذف</a>
+                <a href="@Url.Action("Edit" , "Passenger" , new { id = Model.Passenger.Id })" class="btn btn-success ">ویرایش</a>
+
+            </td>
+        </tr>
+    </tbody>
+</table>
+<h3>شماره تماس های مسافر : </h3>
+<br />
+@foreach (var phone in Model.Phone)
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => phone.PhoneType)</th>
+                <th>@Html.DisplayNameFor(model => phone.Value)</th>
+                <th>عملیات</th>
+
+            </tr>
+        </thead>
+        <tbody> 
+            <tr>
+                <td>@Enum.GetName(typeof(PhoneType), phone.PhoneType)</td>
+                <td>@Html.DisplayFor(model => phone.Value)</td>
+                <td>
+                    <a href="@Url.Action("Delete" , "Phone" , new { id = phone.Id })" class="btn btn-danger ">حذف</a>
+                    <a href="@Url.Action("Edit" , "Phone" , new { id = phone.Id })" class="btn btn-success ">ویرایش</a>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+}
+
+<h3>اطلاعات همراه مسافر : </h3>
+@foreach (var guest in Model.Guests)
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => guest.Name)</th>
+                <th>@Html.DisplayNameFor(model => guest.Family)</th>
+                <th>@Html.DisplayNameFor(model => guest.NationalCode)</th>
+                <th>@Html.DisplayNameFor(model => guest.Sex)</th>
+                <th>عملیات</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Html.DisplayFor(model => guest.Name)</td>
+                <td>@Html.DisplayFor(model => guest.Family)</td>
+                <td>@Html.DisplayFor(model => guest.NationalCode)</td>
+                <td>@Html.DisplayFor(model => guest.Sex)</td>
+                <td>
+                    <a href="@Url.Action("Delete" , "Guest" , new { id = guest.Id })" class="btn btn-danger ">حذف</a>
+                    <a href="@Url.Action("Edit" , "Guest" , new { id = guest.Id })" class="btn btn-success ">ویرایش</a>
+
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+
+}
+
+<br />
+<h3>اطلاعات رزرو مسافر : </h3>
+
+<h4 class="text-danger">مبلغ کل : @ViewBag.TotalPrice</h4>
+<br />
+@foreach (var suit in Model.Suits)
+{
+    <div style="padding:10px;border-bottom:5px solid green" class="col-sm-12">
+        <div class="row">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => suit.Title)</th>
+                        <th>@Html.DisplayNameFor(model => suit.Type)</th>
+                        <th>@Html.DisplayNameFor(model => suit.NumberOfBeds)</th>
+                        <th>@Html.DisplayNameFor(model => suit.NumberOfDoubleBeds)</th>
+                        <th>@Html.DisplayNameFor(model => suit.NumberOfSingleBeds)</th>
+                        <th>@Html.DisplayNameFor(model => suit.NumberOfRoom)</th>
+                        <th>@Html.DisplayNameFor(model => suit.Floor)</th>
+                        <th>@Html.DisplayNameFor(model => suit.Capacity)</th>
+                        <th>@Html.DisplayNameFor(model => suit.Price)</th>
+                        <th>از تاریخ</th>
+                        <th>تا تاریخ</th>
+                        <th>تعداد افراد بزرگسال</th>
+                        <th>تعداد افراد خردسال</th>
+                        <th>قیمت اتاق + تعداد روزهای اقامت</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>@Html.DisplayFor(modelItem => suit.Title)</th>
+                        <th>@Html.DisplayFor(modelItem => suit.Type)</th>
+                        <th>@Html.DisplayFor(modelItem => suit.NumberOfBeds)</th>
+                        <th>@Html.DisplayFor(modelItem => suit.NumberOfDoubleBeds)</th>
+                        <th>@Html.DisplayFor(modelItem => suit.NumberOfSingleBeds)</th>
+                        <th>@Html.DisplayFor(modelItem => suit.NumberOfRoom)</th>
+                        <th>@Html.DisplayFor(modelItem => suit.Floor)</th>
+                        <th>@Html.DisplayFor(modelItem => suit.Capacity)</th>
+                        <th>@Html.DisplayFor(modelItem => suit.Price)</th>
+                        @foreach (var booking in Model.Bookings.Where(b => b.SuitId == suit.Id))
+                {
+                            <th>@Html.DisplayFor(modelItem => booking.EntryDate)</th>
+                            <th>@Html.DisplayFor(modelItem => booking.DateOfDeparture)</th>
+                            <th>@Html.DisplayFor(modelItem => booking.NumberOfPerson)</th>
+                            <th>@Html.DisplayFor(modelItem => booking.NumberOfChild)</th>
+                            <th>@Html.DisplayFor(modelItem => booking.Price)</th>
+                        }
+
+                    </tr>
+                    <tr>
+                        <th colspan="14" class="text-center">عکس اتاق</th>
+                    </tr>
+                    <tr>
+                        <td colspan="14" class="text-center"><img src="@suit.PhotoPath" height="300" class="col-sm-12" /></td>
+                    </tr>
+                    <tr>
+                        <th colspan="7">عملیات</th>
+                        <td colspan="7">
+                            <a href="@Url.Action("PRD" , "Passenger" , new { id = suit.Id })" class="btn btn-danger ">حذف</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+}

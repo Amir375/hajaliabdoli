@@ -42,22 +42,14 @@
                                     <ul style="font-size:13px;">@Html.DisplayNameFor(model => model.NumberOfSingleBeds) : @Html.DisplayFor(modelItem => item.NumberOfSingleBeds)</ul>
                                     <ul style="font-size:13px;">@Html.DisplayNameFor(model => model.NumberOfDoubleBeds) : @Html.DisplayFor(modelItem => item.NumberOfDoubleBeds)</ul>
                                     <span style="font-size:13px;" class="glyphicon glyphicon-certificate"></span> @Html.DisplayNameFor(model => model.NumberOfRoom) : @Html.DisplayFor(modelItem => item.NumberOfRoom) <br />
+                                    <span style="font-size:13px;" class="glyphicon glyphicon-usd"></span> @Html.DisplayNameFor(model => model.Price) : @Html.DisplayFor(modelItem => item.Price) <br />
 
+                                    <br />
+                                    <a href="@Url.Action("PRD" , "Passenger" , new { id = item.Id })" class="btn btn-danger col-xs-5">حذف</a>
                                 </div>
                             </div>
-                            @*<ul>@item.Capacity</ul>
-                                <ul>@item.Floor</ul>*@
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <hr />
-
-                    امکانات :
-                    <br />
-                    <br />
                 </div>
             </div>
         </div>

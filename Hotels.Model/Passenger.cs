@@ -18,11 +18,8 @@ namespace Hotels.Model
         [RegularExpression (@"^\w\d{8}$",ErrorMessage ="فرمت پاسپورت وارد شده اشتباه است")]
         [Display(Name = "شماره پاسپورت")]
         public string PassportNumber { get; set; }
-        //public string PhotoPath { get; set; }
         public virtual List<Booking> Bookings { get; set; }
         public virtual List<Guest> Guests { get; set; }
-
-        //public List<PassengerBookings> PassengerBookings { get; set; }
 
         public string PhotoPath { get; set; }
 

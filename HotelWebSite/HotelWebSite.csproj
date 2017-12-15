@@ -172,16 +172,18 @@
     <Compile Include="Controllers\GuestController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PassengerController.cs" />
+    <Compile Include="Controllers\PhoneController.cs" />
     <Compile Include="Controllers\SecurityController.cs" />
     <Compile Include="Controllers\SuitController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Library\AuthorizeEmployeeAttribute.cs" />
+    <Compile Include="Library\CheckExpairDateAttribute.cs" />
     <Compile Include="Library\Security.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\BookingCreate.cs" />
     <Compile Include="ViewModels\EmployeeCreate.cs" />
+    <Compile Include="ViewModels\FullInformationAboutPassenger.cs" />
     <Compile Include="ViewModels\PassengerCreate.cs" />
     <Compile Include="ViewModels\SecurityLogin.cs" />
     <Compile Include="ViewModels\SuitCreate.cs" />
@@ -210,6 +212,9 @@
     <Content Include="Views\Passenger\PassengerReservation.cshtml" />
     <Content Include="Views\Suit\Create.cshtml" />
     <Content Include="Views\Suit\Edit.cshtml" />
+    <Content Include="Views\Passenger\Full_Information.cshtml" />
+    <Content Include="Views\Phone\Create.cshtml" />
+    <Content Include="Views\Phone\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

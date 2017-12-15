@@ -36,10 +36,6 @@ namespace HotelWebSite.ViewModels
         [Display(Name = "آدرس")]
         public string Location { get; set; }
 
-
-        [Display(Name = "تعداد روزهای اقامت")]
-        public string DaysStays { get; set; }
-
         [Required(ErrorMessage = "پر کردن این فیلد الزامی است")]
         [StringLength(9, MinimumLength = 9, ErrorMessage = "شماره پاسپورت باید 9 کاراکتر باشد")]
         [RegularExpression(@"^\w\d{8}$", ErrorMessage = "فرمت پاسپورت وارد شده اشتباه است")]

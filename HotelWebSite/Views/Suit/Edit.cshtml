@@ -49,6 +49,15 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.NumberOfRoom, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NumberOfRoom, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NumberOfRoom, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
             @Html.LabelFor(model => model.NumberOfSingleBeds, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.NumberOfSingleBeds, new { htmlAttributes = new { @class = "form-control" } })

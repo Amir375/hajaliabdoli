@@ -21,14 +21,6 @@
             </div>
         </div>
 
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.Type, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Type, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
-
         <div class="form-group">
             @Html.LabelFor(model => model.Type, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -99,7 +91,6 @@
             @Html.LabelFor(m => m.PhotoFile, new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
                 <input type="file" id="PhotoFile" name="PhotoFile" class="form-control" />
-                @*@Html.TextBoxFor(, new { type = "file" })*@
                 @Html.ValidationMessageFor(m => m.PhotoFile, "", new { @class = "text-danger" })
             </div>
         </div>

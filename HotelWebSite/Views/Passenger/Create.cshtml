@@ -48,7 +48,6 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Sex, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @*@Html.EditorFor(model => model.Sex, new { htmlAttributes = new { @class = "form-control" } })*@
                 <div class="col-md-5">
                     <label for="Sex-man">مرد</label>
                     <input type="radio" name="Sex" id="Sex-man" value="Man" />
@@ -71,14 +70,6 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.DaysStays, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DaysStays, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DaysStays, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
             @Html.LabelFor(model => model.PassportNumber, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.PassportNumber, new { htmlAttributes = new { @class = "form-control" } })
@@ -90,19 +81,9 @@
             @Html.LabelFor(m => m.PhotoFile, new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
                 <input type="file" id="PhotoFile" name="PhotoFile" class="form-control" />
-                @*@Html.TextBoxFor(, new { type = "file" })*@
                 @Html.ValidationMessageFor(m => m.PhotoFile, "", new { @class = "text-danger" })
             </div>
         </div>
-
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.PhotoFile, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input type="file" id="PhotoFile" name="PhotoFile" class="form-control" />
-                @Html.ValidationMessageFor(model => model.PhotoFile, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
-
 
         <div class="form-group">
             <a href="@Url.Action("Index")" class="btn btn-primary btn-sm">

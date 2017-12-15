@@ -1,4 +1,5 @@
 ﻿using Hotels.Model;
+using HotelWebSite.Library;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,8 @@ using System.Web.Mvc;
 
 namespace HotelWebSite.Controllers
 {
+    [CheckExpairDate]
+    [AuthorizeEmployee]
     public class BookingController : Controller
     {
         // GET: Booking
@@ -25,30 +28,27 @@ namespace HotelWebSite.Controllers
         public ActionResult SearchingInSuitOrRoom (Booking booking)
         {
             HotelDb ctx = new HotelDb();
-            var a = ctx.Bookings.Where(n => n.DateOfDeparture < DateTime.Now).Select(n => n.SuitId);
-            var d = ctx.Suits.Where(t => a.Contains(t.Id)).ToList();
-            d.ForEach(p =>
-            {
-                p.EmptyOrFull = false;
-            });
+            //var a = ctx.Bookings.Where(n => n.DateOfDeparture < DateTime.Now).Select(n => n.SuitId);
+            //var d = ctx.Suits.Where(t => a.Contains(t.Id)).ToList();
+            //d.ForEach(p =>
+            //{
+            //    p.EmptyOrFull = false;
+            //});
 
-            var u = ctx.Bookings.Where(c => c.DateOfDeparture < DateTime.Now).ToList();
-            u.ForEach(p =>
-            {
-                p.Expire = true;
-            });
+            //var u = ctx.Bookings.Where(c => c.DateOfDeparture < DateTime.Now).ToList();
+            //u.ForEach(p =>
+            //{
+            //    p.Expire = true;
+            //});
 
-            ctx.SaveChanges();
+            //ctx.SaveChanges(); // I Added In CheckExpairAttribute _ Libery
             ///////////////////
-            if (booking.EntryDate < DateTime.Now || booking.EntryDate >= booking.DateOfDeparture )
+            if (booking.EntryDate < DateTime.Now || booking.EntryDate >= booking.DateOfDeparture || booking.DateOfDeparture < DateTime.Now)
             {
-                ModelState.AddModelError(nameof(booking.EntryDate), "Wrong !!!");
-            }
-            if (booking.DateOfDeparture < DateTime.Now)
-            {
-                ModelState.AddModelError(nameof(booking.DateOfDeparture), "Wrongg !!!");
-            }
+                ModelState.AddModelError(nameof(booking.EntryDate), "تاریخ وارد شده دارای خطا میباشد آن را اصلاح کنید");
+                ModelState.AddModelError(nameof(booking.DateOfDeparture), "تاریخ وارد شده دارای خطا میباشد آن را اصلاح کنید");
 
+            }
             if (ModelState.IsValid)
             {
                 Session["DateIn"] = booking.EntryDate;
@@ -85,14 +85,6 @@ namespace HotelWebSite.Controllers
             };
             ctx.Bookings.Add(AddBooking);
             ctx.SaveChanges();
-            var bookingg = new Booking()
-            {
-                DateOfDeparture = (DateTime)Session["DateOut"],
-                EntryDate = (DateTime)Session["DateIn"],
-                NumberOfChild = (int)Session["NumberOfChild"],
-                NumberOfPerson = (int)Session["NumbeerOfPerson"]
-
-            };
             return RedirectToAction("Index" , "Passenger");
         }
     }

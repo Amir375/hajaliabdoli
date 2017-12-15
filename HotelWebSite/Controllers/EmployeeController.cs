@@ -21,21 +21,21 @@ namespace HotelWebSite.Controllers
             return View();
         }
 
-        //[AuthorizeEmployee]
+        [AuthorizeEmployee]
         public ActionResult Index()
         {
             var Emp = ctx.Employees.ToList();
             return View(Emp);
         }
 
-        //[AuthorizeEmployee]
+        [AuthorizeEmployee]
         public ActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
-        //[AuthorizeEmployee]
+        [AuthorizeEmployee]
         public ActionResult Create(EmployeeCreate employee)
         {
 
@@ -124,9 +124,10 @@ namespace HotelWebSite.Controllers
             if (ModelState.IsValid)
             {
                 ctx.Entry<Employee>(Empo).State = System.Data.Entity.EntityState.Modified;
-                if (string.IsNullOrEmpty(Empo.Password))
+                ctx.Entry<Employee>(Empo).Property(nameof(Empo.PhotoPath)).IsModified = false;
+                if (string.IsNullOrEmpty(Empo.PasswordHash))
                 {
-                    ctx.Entry<Employee>(Empo).Property(nameof(Empo.Password)).IsModified = false;
+                    ctx.Entry<Employee>(Empo).Property(nameof(Empo.PasswordHash)).IsModified = false;
                 }
                 ctx.SaveChanges();
                 if (Empo.Sex == "Female")

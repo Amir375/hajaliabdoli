@@ -24,20 +24,21 @@ namespace HotelWebSite.Controllers
         [HttpPost]
         [ActionName("Create")]
         public ActionResult CreateGuest(Guest guest)
-        { 
+        {
             HotelDb ctx = new HotelDb();
             ctx.Guests.Add(guest);
             ctx.SaveChanges();
+            TempData["Message"] = $"{guest.Name} {guest.Family} با موفقیت اضافه شد";
             return RedirectToAction("Create","Guest",new { guest.PassengerId });
         }
-        public ActionResult List (int id)//int id
+        public ActionResult List (int id)
         {
             HotelDb ctx = new HotelDb();
             var Passenger = ctx.Passengers.Where(p => p.Id == id).FirstOrDefault();
             ViewBag.PassengerSex = Passenger.Sex;
             ViewBag.PassengerName = Passenger.Name;
             ViewBag.PassengerFamily = Passenger.Family;
-            var Guest = ctx.Guests.Where(g=> g.PassengerId == id); /*ctx.Guests.Where(e => e.PassengerId == id).FirstOrDefault()*/
+            var Guest = ctx.Guests.Where(g=> g.PassengerId == id); 
             return View(Guest);
         }
 

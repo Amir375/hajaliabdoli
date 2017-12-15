@@ -7,13 +7,13 @@ namespace Hotels.Model.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class Change_DaysStays_To_Int : IMigrationMetadata
+    public sealed partial class Phone_Edited : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Change_DaysStays_To_Int));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Phone_Edited));
         
         string IMigrationMetadata.Id
         {
-            get { return "201712131750308_Change_DaysStays_To_Int"; }
+            get { return "201712151436553_Phone_Edited"; }
         }
         
         string IMigrationMetadata.Source

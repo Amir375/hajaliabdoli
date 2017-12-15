@@ -36,8 +36,6 @@
                             <a href="@Url.Action("Edit" , "Suit" , new { id = item.Id })" class="btn btn-success col-xs-5 col-xs-offset-1">ویرایش</a>
 
                     </div>
-                    @*<ul>@item.Capacity</ul>
-                    <ul>@item.Floor</ul>*@
                 </div>
             </div>
         </div>
@@ -50,97 +48,3 @@
     </div>
 
 }
-@*<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.EntryDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DateOfDeparture)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EmptyOrFull)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SuitType)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NumberOfBeds)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Floor)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NumberOfRoom)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NumberOfSingleBeds)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NumberOfDoubleBeds)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Capacity)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PhotoPath)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.EntryDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateOfDeparture)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EmptyOrFull)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SuitType)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NumberOfBeds)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Floor)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NumberOfRoom)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NumberOfSingleBeds)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NumberOfDoubleBeds)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Capacity)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PhotoPath)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
-
-</table>*@

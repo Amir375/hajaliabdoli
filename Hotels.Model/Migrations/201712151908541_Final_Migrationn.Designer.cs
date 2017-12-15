@@ -7,13 +7,13 @@ namespace Hotels.Model.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class Room_Suit_combined_and_chenge : IMigrationMetadata
+    public sealed partial class Final_Migrationn : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Room_Suit_combined_and_chenge));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Final_Migrationn));
         
         string IMigrationMetadata.Id
         {
-            get { return "201712131353421_Room_Suit_combined_and_chenge"; }
+            get { return "201712151908541_Final_Migrationn"; }
         }
         
         string IMigrationMetadata.Source

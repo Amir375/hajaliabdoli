@@ -30,8 +30,7 @@ namespace HotelWebSite.Controllers
             var postedFile = model.PhotoFile;
             int fileSize = postedFile.ContentLength;
             string fileType = postedFile.ContentType;
-            string fileName = //postedFile.FileName;
-                guid + Path.GetExtension(postedFile.FileName);
+            string fileName = guid + Path.GetExtension(postedFile.FileName);
 
             if (fileSize > 500 * 1024)
             {
@@ -91,6 +90,7 @@ namespace HotelWebSite.Controllers
             ctx.Passengers.Remove(ctx.Passengers.Find(id));
             ctx.SaveChanges();
             return RedirectToAction("Index");
+            //zahra
         }
         public ActionResult Edit(int id)
         {
@@ -139,7 +139,6 @@ namespace HotelWebSite.Controllers
                 TempData["FMessage"] = "این مسافر هنوز هیچ رزروی انجام نداده است  ";
                 return RedirectToAction("Index", "Passenger");
             }
-            //ctx.Suits.Where(ctx.Bookings.Select(b => b.PassengerId == id));   Sum(m => m.Price)
 
             var TotalPrice = ctx.Bookings.Where(m => m.PassengerId == id && m.Expire != true).Select(m => m.Price).Sum();
             ViewBag.TotalSuit = ctx.Bookings.Where(a => a.PassengerId == id && a.Expire != true).LongCount(a => a.SuitId == a.SuitId);
@@ -147,17 +146,63 @@ namespace HotelWebSite.Controllers
             var b = from booking in ctx.Bookings
                     join suit in ctx.Suits on booking.SuitId equals suit.Id
                     where booking.PassengerId == id && booking.Expire != true
-                    select suit;
-
-
+                    select suit; 
+            
             return View(b);
-            //var Er = ctx.Suits.Where(s => s.Id == ctx.Bookings.Where(b => b.PassengerId == id).Select(b => b.SuitId));
-            //var a = from p in ctx.Bookings
-            //        join v in ctx.Suits on p.SuitId equals v.Id
-            //        where p.PassengerId == id
-            //        select 
+            //zahra
+        }
 
+        public ActionResult PRD (int id)
+        {
+            HotelDb ctx = new HotelDb();
+            ctx.Bookings.Remove(ctx.Bookings.Where(b => b.SuitId == id).FirstOrDefault());
+            var suit = ctx.Suits.Find(id);
+            suit.EmptyOrFull = false; 
+            ctx.SaveChanges();
+            TempData["Massege"] = "OK";
+            return RedirectToAction("Index" , "Passenger");
+        }
 
+        public ActionResult Full_Information(int id)
+        {
+            HotelDb ctx = new HotelDb();
+            var TotalPrice = ctx.Bookings.Where(m => m.PassengerId == id && m.Expire != true).Select(m => m.Price).Sum();
+            ViewBag.TotalPrice = $"{TotalPrice:###,#}";
+            var Pass = ctx.Passengers.Find(id);
+            var guest = ctx.Guests.Where(g => g.PassengerId == id).ToList();
+            var book = ctx.Bookings.Where(b => b.PassengerId == id).ToList();
+            FullInformationAboutPassenger info = new FullInformationAboutPassenger();
+            info.Passenger = GetPassengerModel(id);
+            info.Phone = ctx.Phones.Where(p => p.PersonId == id).ToList();
+            info.Guests = GetGuestModel(id);
+            info.Suits = from booking in ctx.Bookings
+                         join suit in ctx.Suits on booking.SuitId equals suit.Id
+                         where booking.PassengerId == id && booking.Expire != true
+                         select suit;
+            info.Bookings = GetBookingModel(id);
+            return View(info);
+        }
+        public Passenger GetPassengerModel(int id)
+        {
+            HotelDb ctx = new HotelDb();
+            Passenger pModel = new Passenger();
+            pModel = ctx.Passengers.Find(id);
+
+            return pModel;
+        }
+        public List<Guest> GetGuestModel(int id)
+        {
+            HotelDb ctx = new HotelDb();
+            List<Guest> gModel = new List<Guest>();
+            gModel = ctx.Guests.Where(g => g.PassengerId == id).ToList();
+            return gModel;
+        }
+        public List<Booking> GetBookingModel(int id)
+        {
+            HotelDb ctx = new HotelDb();
+            List<Booking> bModel = new List<Booking>();
+            bModel = ctx.Bookings.Where(g => g.PassengerId == id).ToList();
+            return bModel;
         }
     }
 }

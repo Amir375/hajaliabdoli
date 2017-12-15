@@ -13,11 +13,6 @@ namespace Hotels.Model
     {
         public int Id { get; set; }
 
-        //[Display(Name = "تاریخ ورود")]
-        //public DateTime? EntryDate { get; set; }
-
-        //[Display(Name = "تاریخ خروج")]
-        //public DateTime? DateOfDeparture { get; set; }
 
         [Display(Name = "خالی یا پر بودن")]
         [Required(ErrorMessage = "پر کردن این فیلد الزامی است")]
@@ -53,12 +48,7 @@ namespace Hotels.Model
         [Display(Name = "عکس :")]
         public string PhotoPath { get; set; }
 
-
-        public Option Option { get; set; }
-
         public List<Booking> Bookings { get; set; }
-
-        //public int BookingId { get; set; }
 
 
     }

@@ -3,7 +3,7 @@ namespace Hotels.Model.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class One_To_Many_Added : DbMigration
+    public partial class First_migrationss : DbMigration
     {
         public override void Up()
         {
@@ -19,17 +19,15 @@ namespace Hotels.Model.Migrations
                         NumberOfChild = c.Int(nullable: false),
                         SuitOrRoom = c.String(),
                         Price = c.Long(nullable: false),
+                        Expire = c.Boolean(nullable: false),
                         PassengerId = c.Int(nullable: false),
                         SuitId = c.Int(nullable: false),
-                        Room_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("People.Passenger", t => t.PassengerId)
-                .ForeignKey("dbo.Suits", t => t.SuitId, cascadeDelete: true)
-                .ForeignKey("dbo.Rooms", t => t.Room_Id)
+                .ForeignKey("dbo.Suit_Room", t => t.SuitId, cascadeDelete: true)
                 .Index(t => t.PassengerId)
-                .Index(t => t.SuitId)
-                .Index(t => t.Room_Id);
+                .Index(t => t.SuitId);
             
             CreateTable(
                 "People.Person",
@@ -75,15 +73,13 @@ namespace Hotels.Model.Migrations
                 .Index(t => t.Person_Id);
             
             CreateTable(
-                "dbo.Suits",
+                "dbo.Suit_Room",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        EntryDate = c.DateTime(),
-                        DateOfDeparture = c.DateTime(),
                         EmptyOrFull = c.Boolean(nullable: false),
                         Title = c.String(),
-                        SuitType = c.String(),
+                        Type = c.String(),
                         NumberOfBeds = c.String(),
                         Floor = c.String(),
                         NumberOfRoom = c.String(),
@@ -92,47 +88,8 @@ namespace Hotels.Model.Migrations
                         Capacity = c.Int(nullable: false),
                         Price = c.Long(nullable: false),
                         PhotoPath = c.String(),
-                        Amount = c.String(),
-                        Option_Id = c.Int(),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Options", t => t.Option_Id)
-                .Index(t => t.Option_Id);
-            
-            CreateTable(
-                "dbo.Options",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Estakhr = c.Boolean(nullable: false),
-                        Internet = c.Boolean(nullable: false),
-                        Masaj = c.Boolean(nullable: false),
-                        Parking = c.Boolean(nullable: false),
-                        RoomId = c.Int(nullable: false),
-                        SuitId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
-            
-            CreateTable(
-                "dbo.Rooms",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        EntryDate = c.DateTime(nullable: false),
-                        DateOfDeparture = c.DateTime(nullable: false),
-                        EmptyOrFull = c.Boolean(nullable: false),
-                        RoomType = c.String(),
-                        NumberOfBeds = c.String(),
-                        Floor = c.String(),
-                        NumberOfSingleBeds = c.String(),
-                        NumberOfDoubleBeds = c.String(),
-                        Capacity = c.String(),
-                        BookingId = c.Int(nullable: false),
-                        Option_Id = c.Int(),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Options", t => t.Option_Id)
-                .Index(t => t.Option_Id);
             
             CreateTable(
                 "People.Employee",
@@ -167,10 +124,7 @@ namespace Hotels.Model.Migrations
         {
             DropForeignKey("People.Passenger", "Id", "People.Person");
             DropForeignKey("People.Employee", "Id", "People.Person");
-            DropForeignKey("dbo.Suits", "Option_Id", "dbo.Options");
-            DropForeignKey("dbo.Rooms", "Option_Id", "dbo.Options");
-            DropForeignKey("dbo.Bookings", "Room_Id", "dbo.Rooms");
-            DropForeignKey("dbo.Bookings", "SuitId", "dbo.Suits");
+            DropForeignKey("dbo.Bookings", "SuitId", "dbo.Suit_Room");
             DropForeignKey("dbo.Phones", "Person_Id", "People.Person");
             DropForeignKey("dbo.Guests", "PassengerId", "People.Passenger");
             DropForeignKey("dbo.Bookings", "PassengerId", "People.Passenger");
@@ -178,19 +132,14 @@ namespace Hotels.Model.Migrations
             DropIndex("People.Passenger", new[] { "Id" });
             DropIndex("People.Employee", new[] { "Username" });
             DropIndex("People.Employee", new[] { "Id" });
-            DropIndex("dbo.Rooms", new[] { "Option_Id" });
-            DropIndex("dbo.Suits", new[] { "Option_Id" });
             DropIndex("dbo.Phones", new[] { "Person_Id" });
             DropIndex("dbo.Guests", new[] { "PassengerId" });
             DropIndex("People.Person", new[] { "NationalCode" });
-            DropIndex("dbo.Bookings", new[] { "Room_Id" });
             DropIndex("dbo.Bookings", new[] { "SuitId" });
             DropIndex("dbo.Bookings", new[] { "PassengerId" });
             DropTable("People.Passenger");
             DropTable("People.Employee");
-            DropTable("dbo.Rooms");
-            DropTable("dbo.Options");
-            DropTable("dbo.Suits");
+            DropTable("dbo.Suit_Room");
             DropTable("dbo.Phones");
             DropTable("dbo.Guests");
             DropTable("People.Person");

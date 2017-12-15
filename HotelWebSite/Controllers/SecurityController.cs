@@ -63,7 +63,7 @@ namespace HotelWebSite.Controllers
             Security.Logout();
             return RedirectToAction("Index", "Home");
         }
-        protected override void Dispose(bool disposing)//*//*//*//*//*//*//*//*//*//*//*//*//*//*//*//*//*//*//*//*//*//*//*//*//*//*//*//*//*//*//*//*//                                                                               
+        protected override void Dispose(bool disposing)//*//*//*//*//*//*//*//*//*//*//*//*//*//*//Zahra//*//*//*//*//*//*//*//*//*//*//*//                                                                               
         {
             if(disposing)
             {

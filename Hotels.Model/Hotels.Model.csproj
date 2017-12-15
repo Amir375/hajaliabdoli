@@ -54,40 +54,19 @@
     <Compile Include="Guest.cs" />
     <Compile Include="HotelDb.cs" />
     <Compile Include="Library\PassHash.cs" />
-    <Compile Include="Migrations\201712120919346_One_To_Many_Added.cs" />
-    <Compile Include="Migrations\201712120919346_One_To_Many_Added.Designer.cs">
-      <DependentUpon>201712120919346_One_To_Many_Added.cs</DependentUpon>
+    <Compile Include="Migrations\201712150927539_First_migrationss.cs" />
+    <Compile Include="Migrations\201712150927539_First_migrationss.Designer.cs">
+      <DependentUpon>201712150927539_First_migrationss.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201712121048103_Back_to_Passenger.cs" />
-    <Compile Include="Migrations\201712121048103_Back_to_Passenger.Designer.cs">
-      <DependentUpon>201712121048103_Back_to_Passenger.cs</DependentUpon>
+    <Compile Include="Migrations\201712151436553_Phone_Edited.cs" />
+    <Compile Include="Migrations\201712151436553_Phone_Edited.Designer.cs">
+      <DependentUpon>201712151436553_Phone_Edited.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201712121101480_Passenger-Booking_Suit_Migration_Added.cs" />
-    <Compile Include="Migrations\201712121101480_Passenger-Booking_Suit_Migration_Added.Designer.cs">
-      <DependentUpon>201712121101480_Passenger-Booking_Suit_Migration_Added.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201712130949354_Room_Deleted.cs" />
-    <Compile Include="Migrations\201712130949354_Room_Deleted.Designer.cs">
-      <DependentUpon>201712130949354_Room_Deleted.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201712130950494_Expire_Column_Added.cs" />
-    <Compile Include="Migrations\201712130950494_Expire_Column_Added.Designer.cs">
-      <DependentUpon>201712130950494_Expire_Column_Added.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201712131353421_Room_Suit_combined_and_chenge.cs" />
-    <Compile Include="Migrations\201712131353421_Room_Suit_combined_and_chenge.Designer.cs">
-      <DependentUpon>201712131353421_Room_Suit_combined_and_chenge.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201712131750308_Change_DaysStays_To_Int.cs" />
-    <Compile Include="Migrations\201712131750308_Change_DaysStays_To_Int.Designer.cs">
-      <DependentUpon>201712131750308_Change_DaysStays_To_Int.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201712131812487_Change_Again.cs" />
-    <Compile Include="Migrations\201712131812487_Change_Again.Designer.cs">
-      <DependentUpon>201712131812487_Change_Again.cs</DependentUpon>
+    <Compile Include="Migrations\201712151908541_Final_Migrationn.cs" />
+    <Compile Include="Migrations\201712151908541_Final_Migrationn.Designer.cs">
+      <DependentUpon>201712151908541_Final_Migrationn.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Option.cs" />
     <Compile Include="Passenger.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="Phone.cs" />
@@ -106,29 +85,14 @@
     <Content Include="Scripts\jquery-1.12.4.min.js" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201712120919346_One_To_Many_Added.resx">
-      <DependentUpon>201712120919346_One_To_Many_Added.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201712150927539_First_migrationss.resx">
+      <DependentUpon>201712150927539_First_migrationss.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712121048103_Back_to_Passenger.resx">
-      <DependentUpon>201712121048103_Back_to_Passenger.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201712151436553_Phone_Edited.resx">
+      <DependentUpon>201712151436553_Phone_Edited.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712121101480_Passenger-Booking_Suit_Migration_Added.resx">
-      <DependentUpon>201712121101480_Passenger-Booking_Suit_Migration_Added.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712130949354_Room_Deleted.resx">
-      <DependentUpon>201712130949354_Room_Deleted.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712130950494_Expire_Column_Added.resx">
-      <DependentUpon>201712130950494_Expire_Column_Added.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712131353421_Room_Suit_combined_and_chenge.resx">
-      <DependentUpon>201712131353421_Room_Suit_combined_and_chenge.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712131750308_Change_DaysStays_To_Int.resx">
-      <DependentUpon>201712131750308_Change_DaysStays_To_Int.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712131812487_Change_Again.resx">
-      <DependentUpon>201712131812487_Change_Again.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201712151908541_Final_Migrationn.resx">
+      <DependentUpon>201712151908541_Final_Migrationn.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

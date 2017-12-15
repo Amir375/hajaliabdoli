@@ -87,8 +87,6 @@ namespace HotelWebSite.Controllers
                 ModelState.AddModelError((nameof(suit.PhotoFile)), "فایل ارسالی باید عکس باشد  ");
             }
 
-            //If ModelState
-
             Photo.SaveAs(Path.Combine(
                 Server.MapPath("~/Photos/"),
                 fileName));
@@ -121,7 +119,7 @@ namespace HotelWebSite.Controllers
             ctx.SaveChanges();
             return RedirectToAction("Index");
         }
-
+        //zahra
 
     }
 }
